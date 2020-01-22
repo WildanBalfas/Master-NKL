@@ -88,7 +88,7 @@
                         <div class="col-sm-8">
                             <select name="valuta" id="valuta" class="form-control" required>
                                 @foreach($mata_uang as $p)
-                                <option value="{{ $p->currencyCode }}">{{ $p->currencyCode.' - '.$p->currencyName }}</option>
+                                <option value="{{ $p->currencyCode }}" {{ $p->currencyCode == 'USD' ? 'selected':'' }}>{{ $p->currencyCode.' - '.$p->currencyName }}</option>
                                 @endforeach
                             </select>
                             <!-- <input type="text" class="form-control" name="valuta" id="valuta" required> -->

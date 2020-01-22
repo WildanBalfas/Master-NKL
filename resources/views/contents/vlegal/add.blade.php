@@ -63,21 +63,23 @@
     {{ csrf_field() }}
     {{ method_field('POST') }}
     <div class="col-md-12">
+        <hr style="border-top: 1px solid; color: lightgrey;">
+        <br>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">File Lampiran</label>
+                    <label class="col-sm-4 col-form-label">File Lampiran <span style="color: red;">*</span></label>
                     <div class="col-sm-8">
                         <input type="file" class="form-control" name="lampiran" id="lampiran" required>
-                        <p>*Jika lebih dari satu dibuat archive dalam bentuk .zip</p>
+                        <p style="font-style: italic; font-size: 12px;">Jika lebih dari satu dibuat archive dalam bentuk .zip</p>
                     </div>
                 </div>
                 <div class="form-group row">
                     <p class="col-sm-2" style="font-weight: bold; font-size: 20px; color: green;">LICENSEE</p>
-                    <hr class="col-sm-9" style="border-top: 1px solid; color: darkgrey;">
+                    <hr class="col-sm-9" style="border-top: 1px solid; color: lightgrey;">
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Kode Auditee</label>
+                    <label class="col-sm-4 col-form-label">Kode Auditee <span style="color: red;">*</span></label>
                     <div class="col-sm-8">
                         {{-- <input type="text" class="form-control" name="kodeAu"> --}}
                         <select name="kodeAu" id="kodeAu" class="form-control">
@@ -136,22 +138,22 @@
       <br>
       <div class="form-group row">
         <p class="col-sm-2" style="font-weight: bold; font-size: 20px; color: green;">IMPORTIR</p>
-        <hr class="col-sm-9" style="border-top: 1px solid; color: darkgrey;">
+        <hr class="col-sm-9" style="border-top: 1px solid; color: lightgrey;">
     </div>
     <div class="form-group row">
-        <label class="col-sm-4 col-form-label">Nama Importir</label>
+        <label class="col-sm-4 col-form-label">Nama Importir <span style="color: red;">*</span></label>
         <div class="col-sm-8">
           <input type="text" class="form-control" name="nama_importir" id="nama_importir" required>
       </div>
   </div>
   <div class="form-group row">
-    <label class="col-sm-4 col-form-label">Alamat Importir</label>
+    <label class="col-sm-4 col-form-label">Alamat Importir <span style="color: red;">*</span></label>
     <div class="col-sm-8">
         <textarea class="form-control" rows="3" name="alamat_importir" id="alamat_importir" required></textarea>
     </div>
 </div>
 <div class="form-group row">
-    <label class="col-sm-4 col-form-label">Negara Importir</label>
+    <label class="col-sm-4 col-form-label">Negara Importir <span style="color: red;">*</span></label>
     <div class="col-sm-8">
         <select name="kode_negara_importir" id="kode_negara_importir" class="form-control">
             @foreach($negara as $p)
@@ -161,13 +163,13 @@
     </div>
 </div>
 <div class="form-group row">
-    <label class="col-sm-4 col-form-label">No Invoice</label>
+    <label class="col-sm-4 col-form-label">No Invoice <span style="color: red;">*</span></label>
     <div class="col-sm-8">
         <input type="text" class="form-control" name="no_invoice" id="no_invoice" required>
     </div>
 </div>
 <div class="form-group row">
-    <label class="col-sm-4 col-form-label">Tgl. Invoice</label>
+    <label class="col-sm-4 col-form-label">Tgl. Invoice <span style="color: red;">*</span></label>
     <div class="col-sm-8">
         <input type="date" class="form-control" name="tgl_invoice" id="tgl_invoice" required>
     </div>
@@ -176,10 +178,10 @@
 <div class="col-md-6">
    <div class="form-group row">
     <p class="col-sm-4" style="font-weight: bold; font-size: 20px; color: green;">VLEGAL-DATA</p>
-    <hr class="col-sm-7" style="border-top: 1px solid; color: darkgrey;">
+    <hr class="col-sm-7" style="border-top: 1px solid; color: lightgrey;">
 </div>
 <div class="form-group row">
-    <label class="col-sm-4 col-form-label">Negara Tujuan</label>
+    <label class="col-sm-4 col-form-label">Negara Tujuan <span style="color: red;">*</span></label>
     <div class="col-sm-8">
         <select name="kode_negara_tujuan" id="kode_negara_tujuan" class="form-control">
             @foreach($negara as $p)
@@ -189,7 +191,7 @@
     </div>
 </div>
 <div class="form-group row">
-    <label class="col-sm-4 col-form-label">Kode  Pelabuhan Muat</label>
+    <label class="col-sm-4 col-form-label">Kode  Pelabuhan Muat <span style="color: red;">*</span></label>
     <div class="col-sm-8">
         <select name="kode_pelabuhan_muat" id="kode_pelabuhan_muat" class="form-control">
             @foreach($pel_muat as $p)
@@ -200,7 +202,7 @@
     </div>
 </div>
 <div class="form-group row">
-    <label class="col-sm-4 col-form-label">Pelabuhan Bongkar</label>
+    <label class="col-sm-4 col-form-label">Pelabuhan Bongkar <span style="color: red;">*</span></label>
     <div class="col-sm-8">
         <select name="kode_pelabuhan_bongkar" id="kode_pelabuhan_bongkar" class="form-control">
             @foreach($pel_bongkar as $p)
@@ -219,7 +221,7 @@
 <div class="form-group row">
     <label class="col-sm-4 col-form-label">V-Legal Number</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" name="no_vlegal" id="no_vlegal" required>
+      <input type="text" class="form-control" name="no_vlegal" id="no_vlegal" placeholder="Generated after save" {{ Auth::user()->role == 'client' ?'readonly':''}}>
   </div>
 </div>
 <div class="form-group row" hidden>
@@ -235,7 +237,7 @@
     </div>
 </div>
 <div class="form-group row">
-    <label class="col-sm-4 col-form-label">Lokasi Stuffing</label>
+    <label class="col-sm-4 col-form-label">Lokasi Stuffing <span style="color: red;">*</span></label>
     <div class="col-sm-8">
        <input type="text" class="form-control" name="lokasi_stuffing" id="lokasi_stuffing" required>
    </div>
@@ -276,7 +278,7 @@
                     </div>
                 </div> -->
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Transportasi</label>
+                    <label class="col-sm-4 col-form-label">Transportasi <span style="color: red;">*</span></label>
                     <div class="col-sm-8">
                         <!-- <input type="text" class="form-control" name="transportasi" id="transportasi" required> -->
                         <select name="transportasi" id="transportasi" class="form-control">
@@ -293,7 +295,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Approve Date</label>
+                    <label class="col-sm-4 col-form-label">Approve Date <span style="color: red;">*</span></label>
                     <div class="col-sm-8">
                         <input type="date" class="form-control" name="tgl_ttd" id="tgl_ttd" required>
                     </div>
