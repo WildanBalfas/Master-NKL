@@ -1,0 +1,5 @@
+Pricing Approver Role :
+ - Shipping Partner Functio -> add [ Update All; Functional Update ]
+
+Question:
+- Hanindito or Requestor , dapat mengganti status

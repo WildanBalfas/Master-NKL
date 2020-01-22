@@ -10,10 +10,25 @@
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
 <script>
-$(document).ready(function() {
-    $('#valuta').select2();
-    
-});
+    $(document).ready(function() {
+        $('#valuta').select2();
+
+    });
+
+    $(document).ready(function() {
+        $('#no_hs').select2();
+
+    });
+
+    $(document).ready(function() {
+        $('#scientific_name').select2();
+
+    });
+
+    $(document).ready(function() {
+        $('#kode_harvest_country').select2();
+    });
+
 </script>
 @endsection
 
@@ -29,13 +44,17 @@ $(document).ready(function() {
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">HS Number</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="no_hs" id="no_hs" required>
+                            <select name="no_hs" id="no_hs" class="form-control" required>
+                                @foreach($hs as $h)
+                                <option value="{{ $h->hs_number }}">{{ $h->hs_number }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">Deskripsi Produk</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="nama_produk" id="nama_produk" required>
+                            <textarea class="form-control" name="nama_produk" id="nama_produk" required></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -78,13 +97,21 @@ $(document).ready(function() {
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">Scientific Name</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="scientific_name" id="scientific_name" required>
+                            <select name="scientific_name" id="scientific_name" class="form-control" required>
+                                @foreach($ilmiah as $i)
+                                <option value="{{ $i->nama_umum }}">{{ $i->nama_umum.' '.$i->nama_ilmiah }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">Country of Harvest</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="kode_harvest_country" id="kode_harvest_country" required>
+                            <select name="kode_harvest_country" id="kode_harvest_country" class="form-control" required>
+                                @foreach($negara as $n)
+                                <option value="{{ $n->kodeNegara }}">{{ $n->kodeNegara.' - '.$n->nameNegara }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row" hidden>
@@ -109,66 +136,66 @@ $(document).ready(function() {
 
 <div class="">
     <table class="table table-bordered" id="tblegal">
-  <thead class="thead-light">
-    <tr>
-        <th>No</th>
-        <th>No HS</th>
-        <th>Deskripsi Produk</th>
-        <th>Volume(M3)</th>
-        <th>Net Weight(KG)</th>
-        <th>Number of Unit</th>
-        <th>Value</th>
-        <th>Currency (USD)</th>
-        <th>Scientific name</th>
-        <th>Country of Harvest</th>
-        <!-- <th>HS Printed</th> -->
-        <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach ($detail as $index => $a)
+      <thead class="thead-light">
         <tr>
-        <td>{{ ++$index }}</td>
-        <td>{{ $a->no_hs }}</td>
-        <td>{{ $a->nama_produk }}</td>
-        <td>{{ $a->volume }}</td>
-        <td>{{ $a->net_weight }}</td>
-        <td>{{ $a->nou }}</td>
-        <td>{{ $a->value }}</td>
-        <td>{{ $a->valuta }}</td>
-        <td>{{ $a->scientific_name }}</td>
-        <td>{{ $a->kode_harvest_country }}</td>
-        <!-- <td>{{ $a->hs_printed }}</td> -->
-        <td>
-            <a href="{{route('v-legal-detail.edit', $a->id)}}"><i class="fas fa-edit"></i></a>
-            <a data-target="#delModal<?php echo $a->id; ?>" data-toggle="modal" href="#"><i class="fas fa-trash"></i></a>
-            <div class="modal fade" id="delModal<?php echo $a->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Anda Yakin ?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    </div>
-                    <div class="modal-body">Pilih " Yes " jika anda yakin data {{ $a->nama_produk }} ini dihapus</div>
-                    <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a href="{{ route('v-legal-detail.hapus', $a->id) }}" class="btn btn-danger" data-target="#delModal">Yes</a>
+            <th>No</th>
+            <th>No HS</th>
+            <th>Deskripsi Produk</th>
+            <th>Volume(M3)</th>
+            <th>Net Weight(KG)</th>
+            <th>Number of Unit</th>
+            <th>Value</th>
+            <th>Currency (USD)</th>
+            <th>Scientific name</th>
+            <th>Country of Harvest</th>
+            <!-- <th>HS Printed</th> -->
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($detail as $index => $a)
+        <tr>
+            <td>{{ ++$index }}</td>
+            <td>{{ $a->no_hs }}</td>
+            <td>{{ $a->nama_produk }}</td>
+            <td>{{ $a->volume }}</td>
+            <td>{{ $a->net_weight }}</td>
+            <td>{{ $a->nou }}</td>
+            <td>{{ $a->value }}</td>
+            <td>{{ $a->valuta }}</td>
+            <td>{{ $a->scientific_name }}</td>
+            <td>{{ $a->kode_harvest_country }}</td>
+            <!-- <td>{{ $a->hs_printed }}</td> -->
+            <td>
+                <a href="{{route('v-legal-detail.edit', $a->id)}}"><i class="fas fa-edit"></i></a>
+                <a data-target="#delModal<?php echo $a->id; ?>" data-toggle="modal" href="#"><i class="fas fa-trash"></i></a>
+                <div class="modal fade" id="delModal<?php echo $a->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Anda Yakin ?</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">Pilih " Yes " jika anda yakin data {{ $a->nama_produk }} ini dihapus</div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                <a href="{{ route('v-legal-detail.hapus', $a->id) }}" class="btn btn-danger" data-target="#delModal">Yes</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                </div>
-            </div>
-        </td>
-    </tr>
-    @endforeach
-  </tbody>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
 </table>
 <div class="form-group row">
-            <div class="col-sm-3">
-                <button type="button" class="btn btn-block btn-primary" onclick="window.location.href = '{{ route('v-legal-header.index') }}'" role="button"><i class="fa fa-save"></i> Save</button>
-            </div>
-        </div>
+    <div class="col-sm-3">
+        <button type="button" class="btn btn-block btn-primary" onclick="window.location.href = '{{ route('v-legal-header.index') }}'" role="button"><i class="fa fa-save"></i> Save</button>
+    </div>
+</div>
 </div>
 
 @endsection

@@ -4,7 +4,7 @@
     		<th colspan="6" align="center">
     			<b>ELEMEN DATA HEADER</b>
     		</th>
-    	< -->/tr>
+    	< -->
 	    <!-- <tr>
 	        <th>Tipe Data</th>
 			<th>NPWP</th>
@@ -81,43 +81,3 @@
     @endforeach
     </tbody>
 </table>
-
-<!-- <table border="1">
-    <thead>
-    	<tr>
-    		<th colspan="6" align="center">
-    			<b>ELEMEN DATA DETAIL</b>
-    		</th>
-    	</tr>
-	    <tr>
-	        <th>Tipe Data</th>
-			<th>No. HS</th>
-			<th>Nama Produk</th>
-			<th>Volume</th>
-			<th>Net Weight</th>
-			<th>Number of Unit</th>
-			<th>Value (USD)</th>
-			<th>Scientific Name</th>
-			<th>Kode Harvest Country</th>
-			<th>HS Printed</th>
-			<th>Valuta</th>
-	    </tr>
-    </thead>
-    <tbody>
-    @foreach($detail as $d)
-        <tr>
-            <td> {{ $d->tipe_data}} </td> 
-            <td> {{ $d->no_hs}} </td> 
-	        <td> {{ $d->nama_produk}} </td> 
-	        <td> {{ $d->volume}} </td> 
-	        <td> {{ $d->net_weight}} </td>
-	        <td> {{ $d->nou}} </td> 
-	        <td> {{ $d->value}} </td>
-	     	<td> {{ $d->scientific_name}} </td>
-	        <td> {{ $d->kode_harvest_country}} </td>
-	        <td> {{ $d->hs_printed}} </td> 
-	        <td> {{ $d->valuta}} </td>
-        </tr>
-    @endforeach
-    </tbody>
-</table> -->

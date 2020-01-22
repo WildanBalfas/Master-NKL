@@ -30,7 +30,10 @@ class LegalDetailController extends Controller
         $data = [
             'id' => $id,
             'detail' => LegalDetail::where('id_header', $id)->get(),
-            'mata_uang' => DB::table('kode_currency')->get()
+            'mata_uang' => DB::table('kode_currency')->get(),
+            'hs' => DB::table('kode_hs')->get(),
+            'ilmiah' => DB::table('nama_ilmiah')->get(),
+            'negara' => DB::table('kode_negara')->get()
         ];
         return view('contents.vlegal.addDetail', $data);
     }
@@ -77,7 +80,10 @@ class LegalDetailController extends Controller
     {
         $data = [
             'data' => LegalDetail::find($id),
-            'mata_uang' => DB::table('kode_currency')->get()
+            'mata_uang' => DB::table('kode_currency')->get(),
+            'hs' => DB::table('kode_hs')->get(),
+            'ilmiah' => DB::table('nama_ilmiah')->get(),
+            'negara' => DB::table('kode_negara')->get()
         ];
         return view('contents.vlegal.editDetail', $data);
     }

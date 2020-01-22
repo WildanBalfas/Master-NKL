@@ -13,6 +13,20 @@
     $(document).ready(function() {
         $('#valuta').select2(); 
     });
+
+    $(document).ready(function() {
+        $('#no_hs').select2();
+
+    });
+
+    $(document).ready(function() {
+        $('#scientific_name').select2();
+
+    });
+
+    $(document).ready(function() {
+        $('#kode_harvest_country').select2();
+    });
 </script>
 @endsection
 
@@ -28,13 +42,17 @@
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">HS Number</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="no_hs" id="no_hs" value="{{$data->no_hs}}">
+                            <select name="no_hs" id="no_hs" class="form-control">
+                                @foreach($hs as $h)
+                                <option value="{{ $h->hs_number }}" {{ $h->hs_number == $data->no_hs ? 'selected' : '' }}>{{ $h->hs_number }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">Deskripsi Produk</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="nama_produk" id="nama_produk" value="{{$data->nama_produk}}">
+                            <textarea class="form-control" name="nama_produk" id="nama_produk" required>{{$data->nama_produk}}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -77,13 +95,21 @@
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">Scientific Name</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="scientific_name" id="scientific_name" value="{{$data->scientific_name}}">
+                            <select name="scientific_name" id="scientific_name" class="form-control">
+                                @foreach($ilmiah as $i)
+                                <option value="{{ $i->nama_umum }}" {{ $i->nama_umum == $data->scientific_name ? 'selected' : '' }}>{{ $i->nama_umum.' '.$i->nama_ilmiah }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">Country of Harvest</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="kode_harvest_country" id="kode_harvest_country" value="{{$data->kode_harvest_country}}">
+                            <select name="kode_harvest_country" id="kode_harvest_country" class="form-control">
+                                @foreach($negara as $n)
+                                <option value="{{ $n->kodeNegara }}" {{ $n->kodeNegara == $data->kode_harvest_country ? 'selected' : '' }}>{{ $n->kodeNegara.' - '.$n->nameNegara }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row" hidden>
@@ -97,7 +123,7 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-3">
-                <button type="button" class="btn btn-block btn-primary" role="button"><i class="fa fa-arrow-left"></i> Back</button>
+                <a class="btn btn-block btn-secondary" href="{{ URL::previous() }}"><i class="fa fa-arrow-left"></i> Back</a>
             </div>
             <div class="col-sm-3">
                 <button type="submit" class="btn btn-block btn-success" value="submit"><i class="fa fa-save"></i> Update</button>
