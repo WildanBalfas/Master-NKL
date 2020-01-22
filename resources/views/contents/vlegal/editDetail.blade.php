@@ -97,7 +97,7 @@
                         <div class="col-sm-8">
                             <select name="scientific_name" id="scientific_name" class="form-control">
                                 @foreach($ilmiah as $i)
-                                <option value="{{ $i->nama_umum }}" {{ $i->nama_umum == $data->scientific_name ? 'selected' : '' }}>{{ $i->nama_umum.' '.$i->nama_ilmiah }}</option>
+                                <option value="{{ $i->nama_umum.' ('.$i->nama_ilmiah.')' }}" {{ $i->nama_umum.' ('.$i->nama_ilmiah.')' == $data->scientific_name ? 'selected' : '' }}>{{ $i->nama_umum.' ('.$i->nama_ilmiah.')' }}</option>
                                 @endforeach
                             </select>
                         </div>
