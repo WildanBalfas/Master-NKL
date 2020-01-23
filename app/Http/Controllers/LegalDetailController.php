@@ -32,6 +32,7 @@ class LegalDetailController extends Controller
             'detail' => LegalDetail::where('id_header', $id)->get(),
             'mata_uang' => DB::table('kode_currency')->get(),
             'hs' => DB::table('kode_hs')->get(),
+            // 'hs' => '',
             'ilmiah' => DB::table('nama_ilmiah')->get(),
             'negara' => DB::table('kode_negara')->get()
         ];
@@ -47,7 +48,8 @@ class LegalDetailController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // dd($data);
+        $data['scientific_name'] = implode(";", $data['scientific_name']);
+        // dd($data['scientific_name']);
         if(!empty($data)) {
             $insert = new LegalDetail($data);
             $insert->save();
@@ -78,14 +80,18 @@ class LegalDetailController extends Controller
      */
     public function edit($id)
     {
-        $data = [
-            'data' => LegalDetail::find($id),
+        $data = LegalDetail::find($id);
+        $data['scientific_name'] = explode(";", $data['scientific_name']);
+        // dd($data);
+        // in_array(needle, haystack)
+        $datas = [
+            'data' => $data,
             'mata_uang' => DB::table('kode_currency')->get(),
             'hs' => DB::table('kode_hs')->get(),
             'ilmiah' => DB::table('nama_ilmiah')->get(),
             'negara' => DB::table('kode_negara')->get()
         ];
-        return view('contents.vlegal.editDetail', $data);
+        return view('contents.vlegal.editDetail', $datas);
     }
 
     /**
@@ -98,6 +104,7 @@ class LegalDetailController extends Controller
     public function update(Request $request, $id)
     {
         $form = $request->except('_token','_method');
+        $form['scientific_name'] = implode(";", $form['scientific_name']);
         if(!empty($form)){
             $data = LegalDetail::whereId($id)->update($form);
             $id_header = $form['id_header'];

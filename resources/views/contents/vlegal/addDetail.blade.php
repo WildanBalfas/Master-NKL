@@ -97,7 +97,7 @@
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">Scientific Name</label>
                         <div class="col-sm-8">
-                            <select name="scientific_name" id="scientific_name" class="form-control" required>
+                            <select name="scientific_name[]" id="scientific_name" class="form-control" multiple="multiple" required>
                                 @foreach($ilmiah as $i)
                                 <option value="{{ $i->nama_umum.' ('.$i->nama_ilmiah.')' }}">{{ $i->nama_umum.' ('.$i->nama_ilmiah.')' }}</option>
                                 @endforeach
