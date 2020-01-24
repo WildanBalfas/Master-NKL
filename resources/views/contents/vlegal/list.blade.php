@@ -55,117 +55,124 @@
                     </div>
                     <a data-target="#viewModal<?php echo $a->id; ?>" data-toggle="modal" href="#"><i class="fas fa-eye"></i><a>
                         <div class="modal fade" id="viewModal<?php echo $a->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">View Data V-Legal</h5>
-                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
+                            <form action="{{ route('vlh.kirim', $a->id) }}" method="POST">
+                                @csrf
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">View Data V-Legal</h5>
+                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <style type="text/css">
+                                                .tg  {border-collapse:collapse;border-spacing:0;border-width:1px;border-style:solid;border-color:#ccc;margin:0px auto;}
+                                                .tg td{font-family:Arial, sans-serif;font-size:14px;padding:7px 17px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+                                                .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:7px 17px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+                                                .tg .tg-8hko{font-size:x-small;text-align:left;vertical-align:top}
+                                                .tg .tg-7p3h{font-size:x-small;border-color:inherit;text-align:left;vertical-align:top}
+                                                .tg .tg-gm9y{font-size:100%;background-color:#9aff99;color:#000000;border-color:inherit;text-align:center;vertical-align:top}
+                                                .tg .tg-2qzf{font-size:x-small;border-color:#000000;text-align:left;vertical-align:top}
+                                                .tg .tg-0lax{text-align:left;vertical-align:top}
+                                                .tg .tg-3uo6{background-color:#9aff99;color:#000000;text-align:center;vertical-align:top}
+                                            </style>
+                                            <table class="tg">
+                                              <tr>
+                                                <th class="tg-gm9y" colspan="3">IMPORTIR</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-2qzf">Nama Importir<br></td>
+                                                <td class="tg-7p3h">:</td>
+                                                <td class="tg-7p3h">{{ $a->nama_importir }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-2qzf">Alamat Importir</td>
+                                                <td class="tg-7p3h">:</td>
+                                                <td class="tg-7p3h">{{ $a->alamat_eksportir }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-2qzf">Negara Importir</td>
+                                                <td class="tg-7p3h">:</td>
+                                                <td class="tg-7p3h">{{ $a->kode_negara_importir }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-2qzf">No Invoice</td>
+                                                <td class="tg-7p3h">:</td>
+                                                <td class="tg-7p3h">{{ $a->no_invoice }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-2qzf">Tanggal Invoice</td>
+                                                <td class="tg-7p3h">:</td>
+                                                <td class="tg-7p3h">{{ \Carbon\Carbon::parse($a->tgl_invoice)->format('d-m-Y') }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-0lax"></td>
+                                                <td class="tg-0lax"></td>
+                                                <td class="tg-0lax"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-3uo6" colspan="3">V-LEGAL DATA</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-8hko">Negara Tujuan</td>
+                                                <td class="tg-8hko">:</td>
+                                                <td class="tg-8hko">{{ $a->kode_negara_tujuan }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-8hko">Pelabuhan Muat</td>
+                                                <td class="tg-8hko">:</td>
+                                                <td class="tg-8hko">{{ $a->kode_pelabuhan_muat }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-8hko">Pelabuhan Bongkar</td>
+                                                <td class="tg-8hko">:</td>
+                                                <td class="tg-8hko">{{ $a->kode_pelabuhan_bongkar }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-8hko">No. SLK</td>
+                                                <td class="tg-8hko">:</td>
+                                                <td class="tg-8hko">{{ $a->no_slk }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-8hko">V-Legal Number</td>
+                                                <td class="tg-8hko">:</td>
+                                                <td class="tg-8hko">{{ $a->no_vlegal }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-8hko">Lokasi Stuffing</td>
+                                                <td class="tg-8hko">:</td>
+                                                <td class="tg-8hko">{{ $a->lokasi_stuffing }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-8hko">Transportasi</td>
+                                                <td class="tg-8hko">:</td>
+                                                <td class="tg-8hko">{{ $a->transportasi }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-8hko">Keterangan</td>
+                                                <td class="tg-8hko">:</td>
+                                                <td class="tg-8hko">{{ $a->keterangan }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-8hko">Approve Date</td>
+                                                <td class="tg-8hko">:</td>
+                                                <td class="tg-8hko">{{ \Carbon\Carbon::parse($a->tgl_ttd)->format('d-m-Y') }}</td>
+                                            </tr>
+                                        </table>
+                                        <br>
+                                        @if($a->status == 'DRAFT')
+                                        <input type="checkbox" name="confirmation" value="Yes" required><p align="justify" style="font-size: 12px;">Saya setuju bahwa saya telah memberikan informasi yang benar dan dapat dipertanggungjawabkan sesuai dengan data yang telah dilampirkan. Apabila dikemudian hari diketahui bahwa data tersebut tidak benar, maka saya siap menerima konsekuensi yang sesuai dengan peraturan yang ada pada Lembaga Sertifikasi tersebut.</p>
+                                        @endif
                                     </div>
-                                    <div class="modal-body">
-                                        <style type="text/css">
-                                            .tg  {border-collapse:collapse;border-spacing:0;border-width:1px;border-style:solid;border-color:#ccc;margin:0px auto;}
-                                            .tg td{font-family:Arial, sans-serif;font-size:14px;padding:7px 17px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
-                                            .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:7px 17px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
-                                            .tg .tg-8hko{font-size:x-small;text-align:left;vertical-align:top}
-                                            .tg .tg-7p3h{font-size:x-small;border-color:inherit;text-align:left;vertical-align:top}
-                                            .tg .tg-gm9y{font-size:100%;background-color:#9aff99;color:#000000;border-color:inherit;text-align:center;vertical-align:top}
-                                            .tg .tg-2qzf{font-size:x-small;border-color:#000000;text-align:left;vertical-align:top}
-                                            .tg .tg-0lax{text-align:left;vertical-align:top}
-                                            .tg .tg-3uo6{background-color:#9aff99;color:#000000;text-align:center;vertical-align:top}
-                                        </style>
-                                        <table class="tg">
-                                          <tr>
-                                            <th class="tg-gm9y" colspan="3">IMPORTIR</th>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-2qzf">Nama Importir<br></td>
-                                            <td class="tg-7p3h">:</td>
-                                            <td class="tg-7p3h">{{ $a->nama_importir }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-2qzf">Alamat Importir</td>
-                                            <td class="tg-7p3h">:</td>
-                                            <td class="tg-7p3h">{{ $a->alamat_eksportir }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-2qzf">Negara Importir</td>
-                                            <td class="tg-7p3h">:</td>
-                                            <td class="tg-7p3h">{{ $a->kode_negara_importir }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-2qzf">No Invoice</td>
-                                            <td class="tg-7p3h">:</td>
-                                            <td class="tg-7p3h">{{ $a->no_invoice }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-2qzf">Tanggal Invoice</td>
-                                            <td class="tg-7p3h">:</td>
-                                            <td class="tg-7p3h">{{ \Carbon\Carbon::parse($a->tgl_invoice)->format('d-m-Y') }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-0lax"></td>
-                                            <td class="tg-0lax"></td>
-                                            <td class="tg-0lax"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-3uo6" colspan="3">V-LEGAL DATA</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-8hko">Negara Tujuan</td>
-                                            <td class="tg-8hko">:</td>
-                                            <td class="tg-8hko">{{ $a->kode_negara_tujuan }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-8hko">Pelabuhan Muat</td>
-                                            <td class="tg-8hko">:</td>
-                                            <td class="tg-8hko">{{ $a->kode_pelabuhan_muat }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-8hko">Pelabuhan Bongkar</td>
-                                            <td class="tg-8hko">:</td>
-                                            <td class="tg-8hko">{{ $a->kode_pelabuhan_bongkar }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-8hko">No. SLK</td>
-                                            <td class="tg-8hko">:</td>
-                                            <td class="tg-8hko">{{ $a->no_slk }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-8hko">V-Legal Number</td>
-                                            <td class="tg-8hko">:</td>
-                                            <td class="tg-8hko">{{ $a->no_vlegal }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-8hko">Lokasi Stuffing</td>
-                                            <td class="tg-8hko">:</td>
-                                            <td class="tg-8hko">{{ $a->lokasi_stuffing }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-8hko">Transportasi</td>
-                                            <td class="tg-8hko">:</td>
-                                            <td class="tg-8hko">{{ $a->transportasi }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-8hko">Keterangan</td>
-                                            <td class="tg-8hko">:</td>
-                                            <td class="tg-8hko">{{ $a->keterangan }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-8hko">Approve Date</td>
-                                            <td class="tg-8hko">:</td>
-                                            <td class="tg-8hko">{{ \Carbon\Carbon::parse($a->tgl_ttd)->format('d-m-Y') }}</td>
-                                        </tr>
-                                    </table>
-                                    <br>
-                                    <input type="checkbox" name="confirmation" value="Yes" required><p align="justify" style="font-size: 12px;">Saya setuju bahwa saya telah memberikan informasi yang benar dan dapat dipertanggungjawabkan sesuai dengan data yang telah dilampirkan. Apabila dikemudian hari diketahui bahwa data tersebut tidak benar, maka saya siap menerima konsekuensi yang sesuai dengan peraturan yang ada pada Lembaga Sertifikasi tersebut.</p>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                        @if($a->status == 'DRAFT')
+                                        <button type="submit" id="kirim-submit{{$a->id}}" class="btn btn-success" data-target="#viewModal" disabled="true">Kirim</button>
+                                        @endif
+                                    </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                    <a href="#" class="btn btn-success" data-target="#viewModal">Kirim</a>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </td>
@@ -209,121 +216,124 @@
                     @endif
                     <a data-target="#viewModal<?php echo $a->id; ?>" data-toggle="modal" href="#"><i class="fas fa-eye"></i><a>
                         <div class="modal fade" id="viewModal<?php echo $a->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">View Data V-Legal</h5>
-                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
+                            <form action="{{ route('vlh.kirim', $a->id) }}" method="POST">
+                                @csrf
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">View Data V-Legal</h5>
+                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <style type="text/css">
+                                                .tg  {border-collapse:collapse;border-spacing:0;border-width:1px;border-style:solid;border-color:#ccc;margin:0px auto;}
+                                                .tg td{font-family:Arial, sans-serif;font-size:14px;padding:7px 17px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+                                                .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:7px 17px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+                                                .tg .tg-8hko{font-size:x-small;text-align:left;vertical-align:top}
+                                                .tg .tg-7p3h{font-size:x-small;border-color:inherit;text-align:left;vertical-align:top}
+                                                .tg .tg-gm9y{font-size:100%;background-color:#9aff99;color:#000000;border-color:inherit;text-align:center;vertical-align:top}
+                                                .tg .tg-2qzf{font-size:x-small;border-color:#000000;text-align:left;vertical-align:top}
+                                                .tg .tg-0lax{text-align:left;vertical-align:top}
+                                                .tg .tg-3uo6{background-color:#9aff99;color:#000000;text-align:center;vertical-align:top}
+                                            </style>
+                                            <table class="tg">
+                                              <tr>
+                                                <th class="tg-gm9y" colspan="3">IMPORTIR</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-2qzf">Nama Importir<br></td>
+                                                <td class="tg-7p3h">:</td>
+                                                <td class="tg-7p3h">{{ $a->nama_importir }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-2qzf">Alamat Importir</td>
+                                                <td class="tg-7p3h">:</td>
+                                                <td class="tg-7p3h">{{ $a->alamat_eksportir }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-2qzf">Negara Importir</td>
+                                                <td class="tg-7p3h">:</td>
+                                                <td class="tg-7p3h">{{ $a->kode_negara_importir }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-2qzf">No Invoice</td>
+                                                <td class="tg-7p3h">:</td>
+                                                <td class="tg-7p3h">{{ $a->no_invoice }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-2qzf">Tanggal Invoice</td>
+                                                <td class="tg-7p3h">:</td>
+                                                <td class="tg-7p3h">{{ \Carbon\Carbon::parse($a->tgl_invoice)->format('d-m-Y') }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-0lax"></td>
+                                                <td class="tg-0lax"></td>
+                                                <td class="tg-0lax"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-3uo6" colspan="3">V-LEGAL DATA</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-8hko">Negara Tujuan</td>
+                                                <td class="tg-8hko">:</td>
+                                                <td class="tg-8hko">{{ $a->kode_negara_tujuan }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-8hko">Pelabuhan Muat</td>
+                                                <td class="tg-8hko">:</td>
+                                                <td class="tg-8hko">{{ $a->kode_pelabuhan_muat }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-8hko">Pelabuhan Bongkar</td>
+                                                <td class="tg-8hko">:</td>
+                                                <td class="tg-8hko">{{ $a->kode_pelabuhan_bongkar }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-8hko">No. SLK</td>
+                                                <td class="tg-8hko">:</td>
+                                                <td class="tg-8hko">{{ $a->no_slk }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-8hko">V-Legal Number</td>
+                                                <td class="tg-8hko">:</td>
+                                                <td class="tg-8hko">{{ $a->no_vlegal }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-8hko">Lokasi Stuffing</td>
+                                                <td class="tg-8hko">:</td>
+                                                <td class="tg-8hko">{{ $a->lokasi_stuffing }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-8hko">Transportasi</td>
+                                                <td class="tg-8hko">:</td>
+                                                <td class="tg-8hko">{{ $a->transportasi }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-8hko">Keterangan</td>
+                                                <td class="tg-8hko">:</td>
+                                                <td class="tg-8hko">{{ $a->keterangan }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-8hko">Approve Date</td>
+                                                <td class="tg-8hko">:</td>
+                                                <td class="tg-8hko">{{ \Carbon\Carbon::parse($a->tgl_ttd)->format('d-m-Y') }}</td>
+                                            </tr>
+                                        </table>
+                                        <br>
+                                        @if($a->status == 'DRAFT')
+                                        <input type="checkbox" name="confirmation" value="Yes" required><p align="justify" style="font-size: 12px;">Saya setuju bahwa saya telah memberikan informasi yang benar dan dapat dipertanggungjawabkan sesuai dengan data yang telah dilampirkan. Apabila dikemudian hari diketahui bahwa data tersebut tidak benar, maka saya siap menerima konsekuensi yang sesuai dengan peraturan yang ada pada Lembaga Sertifikasi tersebut.</p>
+                                        @endif
+                                    </div>                                
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                        @if($a->status == 'DRAFT')
+                                        <button type="submit" class="btn btn-success" data-target="#viewModal">Back</button>
+                                        @endif
                                     </div>
-                                    <div class="modal-body">
-                                        <style type="text/css">
-                                            .tg  {border-collapse:collapse;border-spacing:0;border-width:1px;border-style:solid;border-color:#ccc;margin:0px auto;}
-                                            .tg td{font-family:Arial, sans-serif;font-size:14px;padding:7px 17px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
-                                            .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:7px 17px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
-                                            .tg .tg-8hko{font-size:x-small;text-align:left;vertical-align:top}
-                                            .tg .tg-7p3h{font-size:x-small;border-color:inherit;text-align:left;vertical-align:top}
-                                            .tg .tg-gm9y{font-size:100%;background-color:#9aff99;color:#000000;border-color:inherit;text-align:center;vertical-align:top}
-                                            .tg .tg-2qzf{font-size:x-small;border-color:#000000;text-align:left;vertical-align:top}
-                                            .tg .tg-0lax{text-align:left;vertical-align:top}
-                                            .tg .tg-3uo6{background-color:#9aff99;color:#000000;text-align:center;vertical-align:top}
-                                        </style>
-                                        <table class="tg">
-                                          <tr>
-                                            <th class="tg-gm9y" colspan="3">IMPORTIR</th>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-2qzf">Nama Importir<br></td>
-                                            <td class="tg-7p3h">:</td>
-                                            <td class="tg-7p3h">{{ $a->nama_importir }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-2qzf">Alamat Importir</td>
-                                            <td class="tg-7p3h">:</td>
-                                            <td class="tg-7p3h">{{ $a->alamat_eksportir }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-2qzf">Negara Importir</td>
-                                            <td class="tg-7p3h">:</td>
-                                            <td class="tg-7p3h">{{ $a->kode_negara_importir }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-2qzf">No Invoice</td>
-                                            <td class="tg-7p3h">:</td>
-                                            <td class="tg-7p3h">{{ $a->no_invoice }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-2qzf">Tanggal Invoice</td>
-                                            <td class="tg-7p3h">:</td>
-                                            <td class="tg-7p3h">{{ \Carbon\Carbon::parse($a->tgl_invoice)->format('d-m-Y') }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-0lax"></td>
-                                            <td class="tg-0lax"></td>
-                                            <td class="tg-0lax"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-3uo6" colspan="3">V-LEGAL DATA</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-8hko">Negara Tujuan</td>
-                                            <td class="tg-8hko">:</td>
-                                            <td class="tg-8hko">{{ $a->kode_negara_tujuan }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-8hko">Pelabuhan Muat</td>
-                                            <td class="tg-8hko">:</td>
-                                            <td class="tg-8hko">{{ $a->kode_pelabuhan_muat }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-8hko">Pelabuhan Bongkar</td>
-                                            <td class="tg-8hko">:</td>
-                                            <td class="tg-8hko">{{ $a->kode_pelabuhan_bongkar }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-8hko">No. SLK</td>
-                                            <td class="tg-8hko">:</td>
-                                            <td class="tg-8hko">{{ $a->no_slk }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-8hko">V-Legal Number</td>
-                                            <td class="tg-8hko">:</td>
-                                            <td class="tg-8hko">{{ $a->no_vlegal }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-8hko">Lokasi Stuffing</td>
-                                            <td class="tg-8hko">:</td>
-                                            <td class="tg-8hko">{{ $a->lokasi_stuffing }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-8hko">Transportasi</td>
-                                            <td class="tg-8hko">:</td>
-                                            <td class="tg-8hko">{{ $a->transportasi }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-8hko">Keterangan</td>
-                                            <td class="tg-8hko">:</td>
-                                            <td class="tg-8hko">{{ $a->keterangan }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-8hko">Approve Date</td>
-                                            <td class="tg-8hko">:</td>
-                                            <td class="tg-8hko">{{ \Carbon\Carbon::parse($a->tgl_ttd)->format('d-m-Y') }}</td>
-                                        </tr>
-                                    </table>
-                                    <br>
-                                    @if($a->status == 'DRAFT')
-                                    <input type="checkbox" name="confirmation" value="Yes" required><p align="justify" style="font-size: 12px;">Saya setuju bahwa saya telah memberikan informasi yang benar dan dapat dipertanggungjawabkan sesuai dengan data yang telah dilampirkan. Apabila dikemudian hari diketahui bahwa data tersebut tidak benar, maka saya siap menerima konsekuensi yang sesuai dengan peraturan yang ada pada Lembaga Sertifikasi tersebut.</p>
                                 </div>
-                                @endif
-                                <div class="modal-footer">
-                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                    @if($a->status == 'DRAFT')
-                                    <a href="#" class="btn btn-success" data-target="#viewModal">Back</a>
-                                    @endif
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </td>
@@ -341,9 +351,17 @@
     <script type="text/javascript" src="{{ asset('vendor/DT/dataTables.bootstrap4.min.js') }}"></script>
 
     <script type="text/javascript">
-     $(document).ready(function() 
-     {
+     $(document).ready(function() {
         $('#tblegal').DataTable();
+
+        $("input[name='confirmation']").on('change', function() {
+            if($(this).prop("checked") == true){
+                $(this).parent().parent().find("button[type='submit']").attr("disabled", false);
+            }
+            else if($(this).prop("checked") == false){
+                $(this).parent().parent().find("button[type='submit']").attr("disabled", true);
+            }
+        });
     });
 </script>
 @stop

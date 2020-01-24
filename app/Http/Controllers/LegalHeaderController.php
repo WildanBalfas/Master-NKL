@@ -206,4 +206,17 @@ class LegalHeaderController extends Controller
         // return (new LegalExport)->forId($id)->download('Detail.xlsx');
 
     }
+
+    public function kirim(Request $request, $id)
+    {
+        $data = LegalHeader::find($id);
+        if($data) {
+            $data->status = "TERKIRIM";
+            $data->save();
+            return redirect()->back()->withSuccess(['msg'=>'berhasil mengirim data']);
+        }
+
+        return redirect()->back()->withErrors(['msg'=>'gagal mengirim data, data tidak ditemukan']);
+
+    }
 }
