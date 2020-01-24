@@ -188,7 +188,7 @@ function showSurat(suratId, element)
 <div class="form-group row">
     <label class="col-sm-2 col-form-label">Kode Penjabat</label>
     <div class="col-sm-2">
-        <input type="text" class="form-control" name="kodePen" value="SU" readonly>
+        <input type="text" class="form-control" name="kodePen" value="SNR" readonly>
     </div>
 </div>
 <div class="form-group row">
