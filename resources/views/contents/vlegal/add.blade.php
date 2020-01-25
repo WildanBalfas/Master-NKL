@@ -297,7 +297,7 @@
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Approve Date <span style="color: red;">*</span></label>
                     <div class="col-sm-8">
-                        <input type="date" class="form-control" name="tgl_ttd" id="tgl_ttd" required>
+                        <input type="date" class="form-control" name="tgl_ttd" id="tgl_ttd" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" required>
                     </div>
                 </div>
                 <div class="form-group row" hidden>

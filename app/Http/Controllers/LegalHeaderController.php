@@ -33,6 +33,11 @@ class LegalHeaderController extends Controller
 
     public function ajaxAudit($id) {
        $client = client::where('kodeAu', $id)->first();
+       $kabupaten = DB::table('kode_kabupaten')->where('kodeKab', $client['kodeKab'])->first();
+       // dd($kabupaten);
+       $provinsi = DB::table('kode_provinsi')->where('kodeProvinsi', $client['kodeProv'])->first();
+       $client['kodeKab'] = $kabupaten->kodeKab.' - '.$kabupaten->nameKab;
+       $client['kodeProv'] = $provinsi->kodeProvinsi.' - '.$provinsi->nameProvinsi;
        return response()->json($client);
    }
 

@@ -9,31 +9,17 @@ use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
-use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Events\AfterSheet;
 use DB;
 
-class LegalExport implements FromView, ShouldAutoSize, WithEvents
+class LegalExport implements FromView, ShouldAutoSize, WithColumnFormatting
 {
 	public function __construct(int $id)
     {
         $this->id = $id;
     }
 
-    /**
-     * @return array
-     */
-    public function registerEvents(): array
-    {
-        return [
-            AfterSheet::class => function(AfterSheet $event) {
-                $cellRange = 'B'; // All headers
-                $event->sheet->setColumnFormat(array(
-                    'B' => '0'
-                ));
-            },
-        ];
-    }
 
     public function columnFormats(): array
     {
