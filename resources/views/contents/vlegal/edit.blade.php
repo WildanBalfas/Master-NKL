@@ -252,10 +252,10 @@
     <div class="col-sm-8">
         <!-- <input type="text" class="form-control" name="transportasi" id="transportasi" value="{{ $data->transportasi }}"> -->
         <select name="transportasi" id="transportasi" class="form-control">
-            <option selected>{{ $data->transportasi }}</option>
-            <option>BYSEA</option>
-            <option>BYAIR</option>
-            <option>BYLAND</option>
+            <option selected value="{{ $data->transportasi }}">{{ $data->transportasi }}</option>
+            <option value="1">BYSEA</option>
+            <option value="2">BYAIR</option>
+            <option value="3">BYLAND</option>
         </select>
     </div>
 </div>

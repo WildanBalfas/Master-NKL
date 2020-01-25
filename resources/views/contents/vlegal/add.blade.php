@@ -282,9 +282,9 @@
                     <div class="col-sm-8">
                         <!-- <input type="text" class="form-control" name="transportasi" id="transportasi" required> -->
                         <select name="transportasi" id="transportasi" class="form-control">
-                            <option selected>BY SEA</option>
-                            <option >BY AIR</option>
-                            <option >BY LAND</option>
+                            <option selected value="1">BY SEA</option>
+                            <option value="2">BY AIR</option>
+                            <option value="3">BY LAND</option>
                         </select>
                     </div>
                 </div>
