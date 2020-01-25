@@ -1,37 +1,5 @@
 <table border="1">
     <thead>
-    	<!-- <tr>
-    		<th colspan="6" align="center">
-    			<b>ELEMEN DATA HEADER</b>
-    		</th>
-    	< -->
-	    <!-- <tr>
-	        <th>Tipe Data</th>
-			<th>NPWP</th>
-			<th>Nama Eksportir</th>
-			<th>Alamat Eksportir</th>
-			<th>Kode Propinsi</th>
-			<th>Kode Kabupaten</th>
-			<th>No. ETPIK</th>
-			<th>Nama Importir</th>
-			<th>Alamat Importir</th>
-			<th>Kode Negara Importir</th>
-			<th>Kode Pelabuhan Muat</th>
-			<th>Kode Pelabuhan Bongkar</th>
-			<th>Kode Negara Tujuan</th>
-			<th>Skema Kerjasama</th>
-			<th>No. V-Legal</th>
-			<th>Transportasi</th>
-			<th>No. Invoice</th>
-			<th>Tgl. Invoice</th>
-			<th>Keterangan</th>
-			<th>Kode Pengaman</th>
-			<th>Kode Pejabat TTD</th>
-			<th>Tempat TTD</th>
-			<th>Tgl. TTD</th>
-			<th>No. S-LK</th>
-			<th>Digital Sign</th>
-	    </tr> -->
     </thead>
     <tbody>
     @foreach($header as $d)
@@ -66,17 +34,17 @@
     @endforeach
     @foreach($detail as $d)
         <tr>
-            <td> {{ $d->tipe_data}} </td> 
-            <td> {{ $d->no_hs}} </td> 
-            <td> {{ $d->nama_produk}} </td> 
-            <td> {{ $d->volume}} </td> 
-            <td> {{ $d->net_weight}} </td>
-            <td> {{ $d->nou}} </td> 
-            <td> {{ $d->value}} </td>
-            <td> {{ $d->scientific_name}} </td>
-            <td> {{ $d->kode_harvest_country}} </td>
-            <td> {{ $d->hs_printed}} </td> 
-            <td> {{ $d->valuta}} </td>
+            <td>{{ $d->tipe_data}} </td> 
+            <td>{{ $d->no_hs}} </td> 
+            <td>{{ $d->nama_produk}} </td> 
+            <td><p>{{ $d->volume}}</p></td> 
+            <td><p>{{ $d->net_weight}}</p></td>
+            <td>{{ $d->nou}} </td> 
+            <td><p>{{ $d->value}}</p></td>
+            <td>{{ $d->scientific_name}} </td>
+            <td>{{ $d->kode_harvest_country}} </td>
+            <td>{{ $d->hs_printed}} </td> 
+            <td>{{ $d->valuta}} </td>
         </tr>
     @endforeach
     </tbody>

@@ -145,7 +145,7 @@
             <th>Net Weight(KG)</th>
             <th>Number of Unit</th>
             <th>Value</th>
-            <th>Currency (USD)</th>
+            <!-- <th>Currency (USD)</th> -->
             <th>Scientific name</th>
             <th>Country of Harvest</th>
             <!-- <th>HS Printed</th> -->
@@ -161,8 +161,8 @@
             <td>{{ $a->volume }}</td>
             <td>{{ $a->net_weight }}</td>
             <td>{{ $a->nou }}</td>
-            <td>{{ $a->value }}</td>
-            <td>{{ $a->valuta }}</td>
+            <td>{{ $a->value }} {{ $a->valuta }}</td>
+            <!-- <td>{{ $a->valuta }}</td> -->
             <td>{{ $a->scientific_name }}</td>
             <td>{{ $a->kode_harvest_country }}</td>
             <!-- <td>{{ $a->hs_printed }}</td> -->
