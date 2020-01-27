@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//controller
 use App\LegalHeader;
 use App\LegalDetail;
 use App\client;

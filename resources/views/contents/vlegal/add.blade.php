@@ -1,5 +1,5 @@
 @extends('home')
-
+<!-- view -->
 @section('add-adt')
 > Tambah V-Legal Header
 @endsection
