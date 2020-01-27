@@ -1,0 +1,9 @@
+3-21896368951
+
+https://myoracle.webex.com/join/souvik.g.ghosh
+
+From Souvik Ghosh to Everyone:  01:18 PM
+300000011573722
+From Souvik Ghosh to Everyone:  01:29 PM
+select /*-21896368951*/ * from fusion.QSC_PROD_GROUPS_B
+select internal_name,ref_number from fusion.QSC_PROD_GROUPS_B where internal_name = 'PERTAMINA_GROUP'

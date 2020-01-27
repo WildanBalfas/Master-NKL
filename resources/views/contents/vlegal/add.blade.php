@@ -258,7 +258,7 @@
        <input type="text" class="form-control" name="kode_pengaman" id="kode_pengaman">
    </div>
 </div>
-<div class="form-group row" hidden>
+<div class="form-group row">
     <label class="col-sm-4 col-form-label">Kode Pejabat TTD</label>
     <div class="col-sm-8">
         <input type="text" class="form-control" name="kode_pejabat_ttd" id="kode_pejabat_ttd" readonly>
