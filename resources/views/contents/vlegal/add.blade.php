@@ -199,7 +199,7 @@
 <div class="form-group row">
     <label class="col-sm-4 col-form-label">Tgl. Invoice <span style="color: red;">*</span></label>
     <div class="col-sm-8">
-        <input type="date" class="form-control" name="tgl_invoice" id="tgl_invoice" required>
+        <input type="date" class="form-control" name="tgl_invoice" id="tgl_invoice" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" required>
     </div>
 </div>
 </div>

@@ -24,7 +24,7 @@
     </thead>
     <tbody>
         @foreach ($lh as $index => $a)
-        @if(Auth::user()->role == 'admin' && $a->status == 'TERKIRIM' || Auth::user()->role == 'admin' && $a->status == 'DRAFT')
+        @if(Auth::user()->role == 'admin' && $a->status == 'TERKIRIM')
         <tr>
             <td>{{ ++$index }}</td>
             <td>{{ $a->nama_importir }}</td>
@@ -329,7 +329,7 @@
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                                         @if($a->status == 'DRAFT')
-                                        <button type="submit" class="btn btn-success" data-target="#viewModal">Back</button>
+                                        <button type="submit" class="btn btn-success" data-target="#viewModal">SEND</button>
                                         @endif
                                     </div>
                                 </div>
