@@ -52,7 +52,7 @@ class LegalHeaderController extends Controller
         $user = Auth::user();
         $role = $user->role;
         $id = $user->id;
-        if($role == 'clinet')
+        if($role == 'client')
         {
             $klien = \App\client::where('user_id', $id)->first();
         } else {
