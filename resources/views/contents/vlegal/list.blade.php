@@ -29,7 +29,7 @@
             <td>{{ ++$index }}</td>
             <td>{{ $a->nama_importir }}</td>
             <td>{{ $a->nama_eksportir }}</td>
-            <td>Nomor : {{ $a->npwp }}<br>Tanggal : {{ \Carbon\Carbon::parse($a->tgl_invoice)->format('Y-m-d') }}</td>
+            <td>Nomor : {{ $a->no_vlegal }}<br>Tanggal : {{ \Carbon\Carbon::parse($a->tgl_invoice)->format('Y-m-d') }}</td>
             <td>{{ $a->status }}</td>
             <td>@if(!empty($a->lampiran))<a href="{{ asset($a->lampiran) }}" target="_blank">Lihat</a>@endif</td>
             <td>
