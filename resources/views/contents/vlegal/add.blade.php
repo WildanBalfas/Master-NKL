@@ -32,6 +32,31 @@
             placeholder: "Pilih Kode Auditee",
             allowClear: true
         });
+        var anu = $kode.val();
+        if (anu != '')
+        {
+            $.ajax({
+                type: "GET",
+                url: '{{ url("/header/audit-data") }}/'+anu,
+                success: function(data){
+                    $("#kode_pejabat_ttd").val(data.kodePen);
+                    $("#npwp").val(data.npwp);
+                    $("#nama_eksportir").val(data.namaEks);
+                    $("#alamat_eksportir").val(data.alamatEks);
+                    $("#kode_propinsi").val(data.kodeProv);
+                    $("#no_etpik").val(data.etpik);
+                    $("#skema_kerjasama").val(data.skema);
+                $("#tempat_ttd").val(data.tempat); //tempat ttd
+                $("#no_slk").val(data.slk);
+                $("#kode").val(data.kodePen);
+                $("#kode_kabupaten").val(data.kodeKab);
+                // $("#provinsi").append("<option selected>"+data.provinsi+"</option>");
+                },
+                error: function(data) {
+                    //
+                }   
+            });
+        }
         $kode.on("change", function(e) {
             e.preventDefault();
             var id = $(this).val();
@@ -51,8 +76,11 @@
                 $("#kode").val(data.kodePen);
                 $("#kode_kabupaten").val(data.kodeKab);
                 // $("#provinsi").append("<option selected>"+data.provinsi+"</option>");
-            }
-        });
+                },
+                error: function(data) {
+                    //
+                }   
+            });
         });
     });
 </script>
@@ -85,7 +113,7 @@
                         <select name="kodeAu" id="kodeAu" class="form-control">
                             <option value="null" selected>Pilih Kode Auditee</option>
                             @foreach($client as $c)
-                            <option value="{{ $c->kodeAu }}">{{ $c->kodeAu }}</option>
+                            <option value="{{ $c->kodeAu }}" {{ !empty($klien) ? $c->kodeAu == $klien->kodeAu ? 'selected' : '' : '' }}>{{ $c->kodeAu }}</option>
                             @endforeach
                         </select>
                     </div>

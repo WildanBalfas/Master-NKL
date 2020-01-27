@@ -49,6 +49,15 @@ class LegalHeaderController extends Controller
     public function create()
     {
         //$todayDate = Carbon::now();
+        $user = Auth::user();
+        $role = $user->role;
+        $id = $user->id;
+        if($role == 'clinet')
+        {
+            $klien = \App\client::where('user_id', $id)->first();
+        } else {
+            $klien - '';
+        }
 
         $client = \App\client::select('kodeAu')->get();
         // $kabupaten = DB::table('kode_kabupaten')->get();
@@ -58,15 +67,15 @@ class LegalHeaderController extends Controller
         $negara = DB::table('kode_negara')->get();
         
         //$request_id = Auth::user()->id;
-
         $data = [
             //'user_id' => $request_id,
+            'klien' => $klien,
             'client' => $client,
             'negara' => $negara,
             // 'kabupaten' => $kabupaten,
             'pel_bongkar' => $pel_bongkar,
             'pel_muat' => $pel_muat,
-            // 'provinsi' => $provinsi
+            // 'provinsi' => $provins
         ];
         return view('contents.vlegal.add', $data);
     }
@@ -84,7 +93,7 @@ class LegalHeaderController extends Controller
         $id = LegalHeader::select('id')->orderBy('created_at', 'desc')->get();
         $con = count($id)+1;
         $id = strval($con);
-        $nol = 6 - strlen($id);
+        $nol = 3 - strlen($id);
         $z = '';
         for($i=0;$i<$nol;$i++)
         {
