@@ -20,6 +20,8 @@
 
     });
 
+
+
     $(document).ready(function() {
         $('#scientific_name').select2();
 
@@ -29,6 +31,17 @@
         $('#kode_harvest_country').select2();
     });
 
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#daftar').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        } );
+    } );
 </script>
 @endsection
 
