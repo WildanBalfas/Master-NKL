@@ -12,10 +12,13 @@ class clientController extends Controller
     {
       $kabupaten = DB::table('kode_kabupaten')->get();
       $provinsi = DB::table('kode_provinsi')->get();
-
+      $user = DB::table('users')
+      ->where('role', 'client')
+      ->get();
       $data = [
           'kabupaten' => $kabupaten,
-          'provinsi' => $provinsi
+          'provinsi' => $provinsi,
+          'users' => $user
       ];
 
         return view('contents.inputClient', $data);
@@ -54,6 +57,7 @@ class clientController extends Controller
             $client->progress = $request->progress;
             $client->status = $request->status;
             $client->npwp = $request->npwp;
+            $client->user_id = $request->user_id;
             $client->namaEks = $request->namaAu;
             $client->alamatEks = $request->alamatEks;
             $client->kodeProv = $request->kodeProv;
@@ -82,6 +86,7 @@ class clientController extends Controller
             $client->sdSer = $request->sdSer;
             $client->edSer = $request->edSer;
             $client->durasi = $request->durasi;
+            $client->user_id = $request->user_id;
             $client->progress = $request->progress;
             $client->status = $request->status;
             $client->npwp = $request->npwp;
@@ -104,11 +109,15 @@ class clientController extends Controller
         $client = client::where('id','=',$id)->first();
         $kabupaten = DB::table('kode_kabupaten')->get();
         $provinsi = DB::table('kode_provinsi')->get();
+        $user = DB::table('users')
+      ->where('role', 'client')
+      ->get();
 
         $data = [
             'kabupaten' => $kabupaten,
             'provinsi' => $provinsi,
-            'client_data' => $client
+            'client_data' => $client,
+            'users' => $user
         ];
 
         return view('contents.editClient', $data);

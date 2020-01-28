@@ -24,6 +24,10 @@
         placeholder: "Pilih Kode Kabupaten",
         allowClear: true
     });
+    $('#user_id').select2({
+        placeholder: "Pilih Kode Kabupaten",
+        allowClear: true
+    });
 });
 
   function showDiv(divId, element)
@@ -38,6 +42,16 @@
 @section('form_edit_client')
 <form method="POST" action="/{{ $client_data->id }}/update">
     {{ csrf_field() }}
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Nama User</label>
+        <div class="col-sm-4">
+            <select name="user_id" class="form-control" id="user_id">
+              @foreach($users as $p)
+              <option value="{{ $p->id }}" {{ $p->id == $client_data->user_id ? 'selected' : '' }} >{{ $p->name }}</option>
+              @endforeach
+          </select>
+      </div>
+  </div>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Tipe Client</label>
         <div class="col-sm-4">

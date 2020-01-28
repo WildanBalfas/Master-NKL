@@ -56,7 +56,7 @@ class LegalHeaderController extends Controller
         {
             $klien = \App\client::where('user_id', $id)->first();
         } else {
-            $klien - '';
+            $klien = '';
         }
 
         $client = \App\client::select('kodeAu')->get();
