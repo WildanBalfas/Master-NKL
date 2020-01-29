@@ -170,6 +170,9 @@
                                         @if($a->status == 'DRAFT')
                                         <button type="submit" id="kirim-submit{{$a->id}}" class="btn btn-success" data-target="#viewModal" disabled="true">Kirim</button>
                                         @endif
+                                        @if($a->status == 'TERKIRIM')
+                                        <button type="button" class="btn btn-success modal-batal" data-id="{{$a->id}}" data-dismiss="modal">Batal</button>
+                                        @endif
                                     </div>
                                 </div>
                             </form>
@@ -331,6 +334,9 @@
                                         @if($a->status == 'DRAFT')
                                         <button type="submit" class="btn btn-success" data-target="#viewModal">SEND</button>
                                         @endif
+                                        @if($a->status == 'TERKIRIM')
+                                        <button type="button" data-id="{{$a->id}}" class="btn btn-success modal-batal" data-dismiss="modal">Batal</button>
+                                        @endif
                                     </div>
                                 </div>
                             </form>
@@ -344,6 +350,37 @@
         </tbody>
     </table>
     @endsection
+    <!-- Modal -->
+    <div id="modal_batal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+            <h4 class="modal-title">Pembatalan</h4>
+          </div>
+          <div class="modal-body">
+            <form id="batal-form" action="" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                @csrf
+                <input type="hidden" name="id" id="id_vlegal">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">File Pembatalan <span style="color: red;">*</span></label>
+                    <div class="col-sm-8">
+                        <input type="file" class="form-control" name="surat_pembatalan" id="surat_pembatalan" required>
+                        <p style="font-style: italic; font-size: 12px;">Jika lebih dari satu dibuat archive dalam bentuk .zip</p>
+                    </div>
+                </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary submit-batal" >Send</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
 
     @section('js')
@@ -353,6 +390,18 @@
     <script type="text/javascript">
      $(document).ready(function() {
         $('#tblegal').DataTable();
+
+        $('.modal-batal').click(function() {
+            var id = $(this).data('id');
+            $('#modal_batal').modal('show');
+            $('#batal-form').attr('action', 'v-legal/batal/'+id);
+            $('#id_vlegal').val(id);
+        });
+
+        $('.submit-batal').click(function() {
+            $('#batal-form').submit();
+            $('#batal-form').reset();
+        });
 
         $("input[name='confirmation']").on('change', function() {
             if($(this).prop("checked") == true){

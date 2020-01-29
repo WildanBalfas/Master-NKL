@@ -27,19 +27,18 @@ class LegalHeaderController extends Controller
         } else {
             $lh = LegalHeader::all();
         }
-
         return view('contents.vlegal.list', compact('lh'));
     }
 
     public function ajaxAudit($id) {
-       $client = client::where('kodeAu', $id)->first();
-       $kabupaten = DB::table('kode_kabupaten')->where('kodeKab', $client['kodeKab'])->first();
+     $client = client::where('kodeAu', $id)->first();
+     $kabupaten = DB::table('kode_kabupaten')->where('kodeKab', $client['kodeKab'])->first();
        // dd($kabupaten);
-       $provinsi = DB::table('kode_provinsi')->where('kodeProvinsi', $client['kodeProv'])->first();
-       $client['kodeKab'] = $kabupaten->kodeKab.' - '.$kabupaten->nameKab;
-       $client['kodeProv'] = $provinsi->kodeProvinsi.' - '.$provinsi->nameProvinsi;
-       return response()->json($client);
-   }
+     $provinsi = DB::table('kode_provinsi')->where('kodeProvinsi', $client['kodeProv'])->first();
+     $client['kodeKab'] = $kabupaten->kodeKab.' - '.$kabupaten->nameKab;
+     $client['kodeProv'] = $provinsi->kodeProvinsi.' - '.$provinsi->nameProvinsi;
+     return response()->json($client);
+ }
 
     /**
      * Show the form for creating a new resource.
@@ -228,6 +227,29 @@ class LegalHeaderController extends Controller
             $data->status = "TERKIRIM";
             $data->save();
             return redirect()->back()->withSuccess(['msg'=>'berhasil mengirim data']);
+        }
+
+        return redirect()->back()->withErrors(['msg'=>'gagal mengirim data, data tidak ditemukan']);
+
+    }
+
+    public function batal(Request $request, $id)
+    {
+        $data = LegalHeader::find($id);
+        if($data) {
+            $data->status = "DIBATALKAN";
+            $surat_pembatalan = $request->file('surat_pembatalan');
+
+            if(!empty($surat_pembatalan)) {
+                $surat_pembatalan_name = $surat_pembatalan->getClientOriginalName();
+                $pindah = $surat_pembatalan->move(public_path('uploads/lampiran/'), $surat_pembatalan_name);
+                $data->surat_pembatalan = 'uploads/pembatalan/'.$surat_pembatalan_name;
+                if ($pindah) {
+                    $data->save();
+                    return redirect()->back()->withSuccess(['msg'=>'berhasil mengirim data']);
+                }
+                return redirect()->back()->withErrors(['msg'=>'gagal memindahkan file']);
+            }
         }
 
         return redirect()->back()->withErrors(['msg'=>'gagal mengirim data, data tidak ditemukan']);

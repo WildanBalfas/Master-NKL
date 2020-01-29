@@ -53,6 +53,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/v-legal-header/excel/{id}', 'LegalHeaderController@excel')->name('vlh.excel');
     Route::get('v-legal-header/delete/{id}', 'LegalHeaderController@destroy')->name('v-legal-header.hapus');
     Route::post('v-legal/kirim/{id}', 'LegalHeaderController@kirim')->name('vlh.kirim');
+    Route::post('v-legal/batal/{id}', 'LegalHeaderController@batal')->name('vlh.batal');
     });    
 });
 
