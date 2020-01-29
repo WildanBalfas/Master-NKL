@@ -58,7 +58,6 @@ class LegalHeaderController extends Controller
         } else {
             $klien = '';
         }
-
         $client = \App\client::select('kodeAu')->get();
         // $kabupaten = DB::table('kode_kabupaten')->get();
         $pel_bongkar = DB::table('kode_pelabuhan_bongkar')->get();
@@ -72,6 +71,7 @@ class LegalHeaderController extends Controller
             //'user_id' => $request_id,
             'client' => $client,
             'negara' => $negara,
+            'klien' => $klien,
             // 'kabupaten' => $kabupaten,
             'pel_bongkar' => $pel_bongkar,
             'pel_muat' => $pel_muat,
