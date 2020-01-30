@@ -51,8 +51,8 @@
                 $("#kode").val(data.kodePen);
                 $("#kode_kabupaten").val(data.kodeKab);
                 // $("#provinsi").append("<option selected>"+data.provinsi+"</option>");
-                },
-                error: function(data) {
+            },
+            error: function(data) {
                     //
                 }   
             });
@@ -76,8 +76,8 @@
                 $("#kode").val(data.kodePen);
                 $("#kode_kabupaten").val(data.kodeKab);
                 // $("#provinsi").append("<option selected>"+data.provinsi+"</option>");
-                },
-                error: function(data) {
+            },
+            error: function(data) {
                     //
                 }   
             });
@@ -121,10 +121,10 @@
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">ETPIK Number</label>
                     <div class="col-sm-8">
-                       <input type="text" class="form-control" name="no_etpik" id="no_etpik" readonly>
-                   </div>
-               </div>
-               <div class="form-group row">
+                     <input type="text" class="form-control" name="no_etpik" id="no_etpik" readonly>
+                 </div>
+             </div>
+             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">NPWP</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" name="npwp" id="npwp" readonly>
@@ -152,19 +152,31 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Provinsi</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="kode_propinsi" id="kode_propinsi" readonly>
                   <!-- <input type="text" class="form-control" name="kode_propinsi" id="kode_propinsi" readonly> -->
-              </div>
-          </div>
-          <div class="form-group row">
+                  <!-- <input type="text" class="form-control" name="kode_propinsi" id="kode_propinsi" readonly> -->
+                  <select name="kode_propinsi" class="form-control" id="kode_provinsi" readonly>
+                    <option value=""></option>
+                    @foreach($provinsi as $p)
+                    <option value="{{ $p->kodeProvinsi }}">{{ $p->kodeProvinsi.' - '.$p->nameProvinsi }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
             <label class="col-sm-4 col-form-label">Kabupaten/Kota</label>
             <div class="col-sm-8">
-              <input type="text" name="kode_kabupaten" class="form-control" id="kode_kabupaten" readonly>
+              <!-- <input type="text" name="kode_kabupaten" class="form-control" id="kode_kabupaten" readonly> -->
               <!-- <input type="text" class="form-control" name="kode_kabupaten" id="kode_kabupaten" readonly> -->
-          </div>
-      </div>
-      <br>
-      <div class="form-group row">
+              <select name="kode_kabupaten" class="form-control" id="kode_kabupaten" readonly>
+                <option value=""></option>
+                @foreach($kabupaten as $k)
+                <option value="{{ $k->kodeKab }}">{{ $k->kodeKab.' - '.$k->nameKab }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <br>
+    <div class="form-group row">
         <p class="col-sm-2" style="font-weight: bold; font-size: 20px; color: green;">IMPORTIR</p>
         <hr class="col-sm-9" style="border-top: 1px solid; color: lightgrey;">
     </div>
@@ -204,7 +216,7 @@
 </div>
 </div>
 <div class="col-md-6">
-   <div class="form-group row">
+ <div class="form-group row">
     <p class="col-sm-4" style="font-weight: bold; font-size: 20px; color: green;">VLEGAL-DATA</p>
     <hr class="col-sm-7" style="border-top: 1px solid; color: lightgrey;">
 </div>
@@ -255,8 +267,8 @@
 <div class="form-group row" hidden>
     <label class="col-sm-4 col-form-label">Kode Pengaman</label>
     <div class="col-sm-8">
-       <input type="text" class="form-control" name="kode_pengaman" id="kode_pengaman">
-   </div>
+     <input type="text" class="form-control" name="kode_pengaman" id="kode_pengaman">
+ </div>
 </div>
 <div class="form-group row">
     <label class="col-sm-4 col-form-label">Kode Pejabat TTD</label>
@@ -267,8 +279,8 @@
 <div class="form-group row">
     <label class="col-sm-4 col-form-label">Lokasi Stuffing <span style="color: red;">*</span></label>
     <div class="col-sm-8">
-       <input type="text" class="form-control" name="lokasi_stuffing" id="lokasi_stuffing" required>
-   </div>
+     <input type="text" class="form-control" name="lokasi_stuffing" id="lokasi_stuffing" required>
+ </div>
 </div>
 <div class="form-group row" hidden>
     <label class="col-sm-4 col-form-label">Tempat TTD</label>
@@ -296,8 +308,8 @@
 <div class="form-group row" hidden>
     <label class="col-sm-4 col-form-label">Skema Kerjasama</label>
     <div class="col-sm-8">
-       <input type="text" class="form-control" name="skema_kerjasama" id="skema_kerjasama"readonly>
-   </div>
+     <input type="text" class="form-control" name="skema_kerjasama" id="skema_kerjasama"readonly>
+ </div>
 </div>
                 <!-- <div class="form-group row">
                     <label class="col-sm-4 col-form-label">No. V-Legal</label>

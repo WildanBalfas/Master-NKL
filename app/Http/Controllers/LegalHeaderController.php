@@ -35,8 +35,8 @@ class LegalHeaderController extends Controller
      $kabupaten = DB::table('kode_kabupaten')->where('kodeKab', $client['kodeKab'])->first();
        // dd($kabupaten);
      $provinsi = DB::table('kode_provinsi')->where('kodeProvinsi', $client['kodeProv'])->first();
-     $client['kodeKab'] = $kabupaten->kodeKab.' - '.$kabupaten->nameKab;
-     $client['kodeProv'] = $provinsi->kodeProvinsi.' - '.$provinsi->nameProvinsi;
+     // $client['kodeKab'] = $kabupaten->kodeKab.' - '.$kabupaten->nameKab;
+     // $client['kodeProv'] = $provinsi->kodeProvinsi.' - '.$provinsi->nameProvinsi;
      return response()->json($client);
  }
 
@@ -58,10 +58,10 @@ class LegalHeaderController extends Controller
             $klien = '';
         }
         $client = \App\client::select('kodeAu')->get();
-        // $kabupaten = DB::table('kode_kabupaten')->get();
+        $kabupaten = DB::table('kode_kabupaten')->get();
         $pel_bongkar = DB::table('kode_pelabuhan_bongkar')->get();
         $pel_muat = DB::table('kode_pelabuhan_muat')->get();
-        // $provinsi = DB::table('kode_provinsi')->get();
+        $provinsi = DB::table('kode_provinsi')->get();
         $negara = DB::table('kode_negara')->get();  
         
         //$request_id = Auth::user()->id;
@@ -71,10 +71,10 @@ class LegalHeaderController extends Controller
             'client' => $client,
             'negara' => $negara,
             'klien' => $klien,
-            // 'kabupaten' => $kabupaten,
+            'kabupaten' => $kabupaten,
             'pel_bongkar' => $pel_bongkar,
             'pel_muat' => $pel_muat,
-            // 'provinsi' => $provinsi
+            'provinsi' => $provinsi
         ];
         return view('contents.vlegal.add', $data);
     }
@@ -148,20 +148,20 @@ class LegalHeaderController extends Controller
         $data['tgl_ttd'] = \Carbon\Carbon::parse($data['tgl_ttd'])->format('Y-m-d');
         $data['tgl_invoice'] = \Carbon\Carbon::parse($data['tgl_invoice'])->format('Y-m-d');
         $client = \App\client::select('kodeAu')->get();
-        // $kabupaten = DB::table('kode_kabupaten')->get();
+        $kabupaten = DB::table('kode_kabupaten')->get();
         $pel_bongkar = DB::table('kode_pelabuhan_bongkar')->get();
         $pel_muat = DB::table('kode_pelabuhan_muat')->get();
-        // $provinsi = DB::table('kode_provinsi')->get();
+        $provinsi = DB::table('kode_provinsi')->get();
         $negara = DB::table('kode_negara')->get();
 
         $datas = [
             'client'=> $client,
             'data' => $data,
             'negara' => $negara,
-            // 'kabupaten' => $kabupaten,
+            'kabupaten' => $kabupaten,
             'pel_bongkar' => $pel_bongkar,
             'pel_muat' => $pel_muat,
-            // 'provinsi' => $provinsi
+            'provinsi' => $provinsi
         ];
         // dd($data);
         return view('contents.vlegal.edit', $datas);

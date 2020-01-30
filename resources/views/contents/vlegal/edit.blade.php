@@ -114,12 +114,24 @@
                 <label class="col-sm-4 col-form-label">Provinsi</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" name="kode_propinsi" id="kode_propinsi" readonly value="{{  $data->kode_propinsi }}">
+                    <select name="kode_propinsi" class="form-control" id="kode_provinsi" readonly>
+                        <option value=""></option>
+                        @foreach($provinsi as $p)
+                        <option value="{{ $p->kodeProvinsi }}" {{  $data->kode_propinsi == $p->kodeProvinsi ? 'selected' : '' }}>{{ $p->kodeProvinsi.' - '.$p->nameProvinsi }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Kabupaten/Kota</label>
                 <div class="col-sm-8">
-                   <input type="text" class="form-control" name="kode_kabupaten" id="kode_kabupaten" readonly value="{{ $data->kode_kabupaten }}">
+                   <!-- <input type="text" class="form-control" name="kode_kabupaten" id="kode_kabupaten" readonly value="{{ $data->kode_kabupaten }}"> -->
+                   <select name="kode_kabupaten" class="form-control" id="kode_kabupaten" readonly>
+                    <option value=""></option>
+                    @foreach($kabupaten as $k)
+                    <option value="{{ $k->kodeKab }}" {{ $data->kode_kabupaten == $k->kodeKab ? 'selected' : '' }}>{{ $k->kodeKab.' - '.$k->nameKab }}</option>
+                    @endforeach
+                </select>
                </div>
            </div>
            <br>
