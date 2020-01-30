@@ -45,7 +45,7 @@ function showSurat(suratId, element)
 @endsection
 
 @section('form_client')
-<form method="POST" action="/input-client">
+<form method="POST" action="/input-client" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Nama User</label>

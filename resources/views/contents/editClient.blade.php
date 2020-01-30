@@ -40,7 +40,7 @@
 
 
 @section('form_edit_client')
-<form method="POST" action="/{{ $client_data->id }}/update">
+<form method="POST" action="/{{ $client_data->id }}/update" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Nama User</label>
