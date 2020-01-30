@@ -44,12 +44,14 @@
                     $("#nama_eksportir").val(data.namaEks);
                     $("#alamat_eksportir").val(data.alamatEks);
                     $("#kode_propinsi").val(data.kodeProv);
+                    $("#provinsi_lengkap").val(data.provinsi_lengkap);
                     $("#no_etpik").val(data.etpik);
                     $("#skema_kerjasama").val(data.skema);
-                $("#tempat_ttd").val(data.tempat); //tempat ttd
-                $("#no_slk").val(data.slk);
-                $("#kode").val(data.kodePen);
-                $("#kode_kabupaten").val(data.kodeKab);
+                    $("#tempat_ttd").val(data.tempat); //tempat ttd
+                    $("#no_slk").val(data.slk);
+                    $("#kode").val(data.kodePen);
+                    $("#kode_kabupaten").val(data.kodeKab);
+                    $("#kabupaten_lengkap").val(data.kabupaten_lengkap);
                 // $("#provinsi").append("<option selected>"+data.provinsi+"</option>");
             },
             error: function(data) {
@@ -69,12 +71,14 @@
                     $("#nama_eksportir").val(data.namaEks);
                     $("#alamat_eksportir").val(data.alamatEks);
                     $("#kode_propinsi").val(data.kodeProv);
+                    $("#provinsi_lengkap").val(data.provinsi_lengkap);
                     $("#no_etpik").val(data.etpik);
                     $("#skema_kerjasama").val(data.skema);
                 $("#tempat_ttd").val(data.tempat); //tempat ttd
                 $("#no_slk").val(data.slk);
                 $("#kode").val(data.kodePen);
                 $("#kode_kabupaten").val(data.kodeKab);
+                $("#kabupaten_lengkap").val(data.kabupaten_lengkap);
                 // $("#provinsi").append("<option selected>"+data.provinsi+"</option>");
             },
             error: function(data) {
@@ -152,27 +156,16 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Provinsi</label>
                 <div class="col-sm-8">
-                  <!-- <input type="text" class="form-control" name="kode_propinsi" id="kode_propinsi" readonly> -->
-                  <!-- <input type="text" class="form-control" name="kode_propinsi" id="kode_propinsi" readonly> -->
-                  <select name="kode_propinsi" class="form-control" id="kode_provinsi" readonly>
-                    <option value=""></option>
-                    @foreach($provinsi as $p)
-                    <option value="{{ $p->kodeProvinsi }}">{{ $p->kodeProvinsi.' - '.$p->nameProvinsi }}</option>
-                    @endforeach
-                </select>
+                  <input type="text" class="form-control" id="provinsi_lengkap" readonly>
+                  <input type="hidden" class="form-control" name="kode_propinsi" id="kode_propinsi" readonly>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-4 col-form-label">Kabupaten/Kota</label>
             <div class="col-sm-8">
-              <!-- <input type="text" name="kode_kabupaten" class="form-control" id="kode_kabupaten" readonly> -->
-              <!-- <input type="text" class="form-control" name="kode_kabupaten" id="kode_kabupaten" readonly> -->
-              <select name="kode_kabupaten" class="form-control" id="kode_kabupaten" readonly>
-                <option value=""></option>
-                @foreach($kabupaten as $k)
-                <option value="{{ $k->kodeKab }}">{{ $k->kodeKab.' - '.$k->nameKab }}</option>
-                @endforeach
-            </select>
+              <input type="text" class="form-control" name="kode_kabupaten" id="kabupaten_lengkap" readonly>
+              <input type="hidden" class="form-control" name="kode_kabupaten" id="kode_kabupaten" readonly>
+              
         </div>
     </div>
     <br>

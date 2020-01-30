@@ -33,10 +33,9 @@ class LegalHeaderController extends Controller
     public function ajaxAudit($id) {
      $client = client::where('kodeAu', $id)->first();
      $kabupaten = DB::table('kode_kabupaten')->where('kodeKab', $client['kodeKab'])->first();
-       // dd($kabupaten);
      $provinsi = DB::table('kode_provinsi')->where('kodeProvinsi', $client['kodeProv'])->first();
-     // $client['kodeKab'] = $kabupaten->kodeKab.' - '.$kabupaten->nameKab;
-     // $client['kodeProv'] = $provinsi->kodeProvinsi.' - '.$provinsi->nameProvinsi;
+     $client['kabupaten_lengkap'] = $kabupaten->kodeKab.' - '.$kabupaten->nameKab;
+     $client['provinsi_lengkap'] = $provinsi->kodeProvinsi.' - '.$provinsi->nameProvinsi;
      return response()->json($client);
  }
 
@@ -145,6 +144,10 @@ class LegalHeaderController extends Controller
     public function edit($id)
     {
         $data = LegalHeader::findOrFail($id);
+        $kabupaten = DB::table('kode_kabupaten')->where('kodeKab', $data['kode_kabupaten'])->first();
+        $provinsi = DB::table('kode_provinsi')->where('kodeProvinsi', $data['kode_propinsi'])->first();
+        $data['provinsi_lengkap'] = $provinsi->kodeProvinsi.' - '.$provinsi->nameProvinsi;
+        $data['kabupaten_lengkap'] = $kabupaten->kodeKab.' - '.$kabupaten->nameKab;
         $data['tgl_ttd'] = \Carbon\Carbon::parse($data['tgl_ttd'])->format('Y-m-d');
         $data['tgl_invoice'] = \Carbon\Carbon::parse($data['tgl_invoice'])->format('Y-m-d');
         $client = \App\client::select('kodeAu')->get();
@@ -153,7 +156,6 @@ class LegalHeaderController extends Controller
         $pel_muat = DB::table('kode_pelabuhan_muat')->get();
         $provinsi = DB::table('kode_provinsi')->get();
         $negara = DB::table('kode_negara')->get();
-
         $datas = [
             'client'=> $client,
             'data' => $data,

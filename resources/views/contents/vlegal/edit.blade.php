@@ -27,7 +27,7 @@
             placeholder: "Pilih Kode Auditee",
             allowClear: true
         });
-        var $kode = $('#kodeAu');
+        var $kode = $('#client_id');
         $kode.select2({
             placeholder: "Pilih Kode Auditee",
             allowClear: true
@@ -43,7 +43,7 @@
                     $("#npwp").val(data.npwp);
                     $("#nama_eksportir").val(data.namaEks);
                     $("#alamat_eksportir").val(data.alamatEks);
-                    $("#kode_propinsi").val(data.kodeProv);
+                    $("#kode_provinsi").val(data.kodeProv);
                     $("#no_etpik").val(data.etpik);
                     $("#skema_kerjasama").val(data.skema);
                 $("#tempat_ttd").val(data.tempat); //tempat ttd
@@ -113,25 +113,15 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Provinsi</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" name="kode_propinsi" id="kode_propinsi" readonly value="{{  $data->kode_propinsi }}">
-                    <select name="kode_propinsi" class="form-control" id="kode_provinsi" readonly>
-                        <option value=""></option>
-                        @foreach($provinsi as $p)
-                        <option value="{{ $p->kodeProvinsi }}" {{  $data->kode_propinsi == $p->kodeProvinsi ? 'selected' : '' }}>{{ $p->kodeProvinsi.' - '.$p->nameProvinsi }}</option>
-                        @endforeach
-                    </select>
+                    <input type="text" class="form-control" id="kode_propinsi" readonly value="{{  $data->provinsi_lengkap }}">
+                    <input type="hidden" class="form-control" name="kode_propinsi" id="kode_propinsi" readonly value="{{  $data->kode_propinsi }}">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Kabupaten/Kota</label>
                 <div class="col-sm-8">
-                   <!-- <input type="text" class="form-control" name="kode_kabupaten" id="kode_kabupaten" readonly value="{{ $data->kode_kabupaten }}"> -->
-                   <select name="kode_kabupaten" class="form-control" id="kode_kabupaten" readonly>
-                    <option value=""></option>
-                    @foreach($kabupaten as $k)
-                    <option value="{{ $k->kodeKab }}" {{ $data->kode_kabupaten == $k->kodeKab ? 'selected' : '' }}>{{ $k->kodeKab.' - '.$k->nameKab }}</option>
-                    @endforeach
-                </select>
+                   <input type="text" class="form-control" id="kode_kabupaten" readonly value="{{ $data->kabupaten_lengkap }}">
+                   <input type="hidden" class="form-control" name="kode_kabupaten" id="kode_kabupaten" readonly value="{{ $data->kode_kabupaten }}">
                </div>
            </div>
            <br>
