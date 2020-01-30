@@ -114,7 +114,7 @@
                     <label class="col-sm-4 col-form-label">Kode Auditee <span style="color: red;">*</span></label>
                     <div class="col-sm-8">
                         {{-- <input type="text" class="form-control" name="kodeAu"> --}}
-                        <select name="kodeAu" id="kodeAu" class="form-control">
+                        <select name="client_id" id="kodeAu" class="form-control">
                             <option value="null" selected>Pilih Kode Auditee</option>
                             @foreach($client as $c)
                             <option value="{{ $c->kodeAu }}" {{ !empty($klien) ? $c->kodeAu == $klien->kodeAu ? 'selected' : '' : '' }}>{{ $c->kodeAu }}</option>

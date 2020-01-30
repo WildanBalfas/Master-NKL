@@ -100,7 +100,7 @@ class LegalHeaderController extends Controller
         $id_vlegal=$z.$id;
         
         $data = $request->all(); 
-
+        
         $file_lampiran = $request->file('lampiran');
 
 
