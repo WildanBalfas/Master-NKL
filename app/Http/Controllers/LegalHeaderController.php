@@ -105,7 +105,7 @@ class LegalHeaderController extends Controller
 
 
         $data['no_vlegal'] = $id_vlegal;
-        $data['client_id'] = $data['kodeAu'];
+        // $data['client_id'] = $data['client_idx'];
         if(!empty($data)){
             $head = new LegalHeader($data);
             $head->user_id = $request_id;
@@ -144,10 +144,20 @@ class LegalHeaderController extends Controller
     public function edit($id)
     {
         $data = LegalHeader::findOrFail($id);
+
         $kabupaten = DB::table('kode_kabupaten')->where('kodeKab', $data['kode_kabupaten'])->first();
         $provinsi = DB::table('kode_provinsi')->where('kodeProvinsi', $data['kode_propinsi'])->first();
-        $data['provinsi_lengkap'] = $provinsi->kodeProvinsi.' - '.$provinsi->nameProvinsi;
-        $data['kabupaten_lengkap'] = $kabupaten->kodeKab.' - '.$kabupaten->nameKab;
+        if(!empty($kabupaten)) {
+            $data['kabupaten_lengkap'] = $kabupaten->kodeKab.' - '.$kabupaten->nameKab;    
+        } else {
+            $data['kabupaten_lengkap'] = '';
+        }
+        if(!empty($provinsi)){
+            $data['provinsi_lengkap'] = $provinsi->kodeProvinsi.' - '.$provinsi->nameProvinsi;    
+        } else {
+            $data['provinsi_lengkap'] = '';
+        }       
+
         $data['tgl_ttd'] = \Carbon\Carbon::parse($data['tgl_ttd'])->format('Y-m-d');
         $data['tgl_invoice'] = \Carbon\Carbon::parse($data['tgl_invoice'])->format('Y-m-d');
         $client = \App\client::select('kodeAu')->get();
