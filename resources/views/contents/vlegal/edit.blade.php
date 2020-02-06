@@ -19,6 +19,34 @@
             placeholder: "Pilih Kode Auditee",
             allowClear: true
         });
+
+         $('#kode_negara_importir').change(function() {
+            var negara = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: '{{ url("/header/pelabuhan-muat") }}/'+negara,
+                success: function(data){
+                    $('#kode_pelabuhan_muat').select2({
+                        data: data,
+                    });        
+                }
+            });
+            
+        });
+
+        $('#kode_negara_tujuan').change(function() {
+            var negara = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: '{{ url("/header/pelabuhan-bongkar") }}/'+negara,
+                success: function(data){
+                    $('#kode_pelabuhan_bongkar').select2({
+                        data: data,
+                    });        
+                }
+            });
+        });
+        
         $('#kode_negara_tujuan').select2({
             placeholder: "Pilih Kode Auditee",
             allowClear: true

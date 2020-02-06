@@ -15,18 +15,48 @@
             placeholder: "Pilih Kode Auditee",
             allowClear: true
         });
+
+        $('#kode_negara_importir').change(function() {
+            var negara = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: '{{ url("/header/pelabuhan-muat") }}/'+negara,
+                success: function(data){
+                    $('#kode_pelabuhan_muat').select2({
+                        data: data,
+                    });        
+                }
+            });
+            
+        });
+
+        $('#kode_negara_tujuan').change(function() {
+            var negara = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: '{{ url("/header/pelabuhan-bongkar") }}/'+negara,
+                success: function(data){
+                    $('#kode_pelabuhan_bongkar').select2({
+                        data: data,
+                    });        
+                }
+            });
+        });
+
         $('#kode_pelabuhan_bongkar').select2({
-            placeholder: "Pilih Kode Auditee",
+            placeholder: "Pilih Negara Tujuan terlebih dahulu",
             allowClear: true
         });
         $('#kode_negara_tujuan').select2({
-            placeholder: "Pilih Kode Auditee",
-            allowClear: true
+            placeholder: "Pilih negara tujuan",
+            allowClear: true,
         });
         $('#kode_pelabuhan_muat').select2({
-            placeholder: "Pilih Kode Auditee",
-            allowClear: true
+            placeholder: "Pilih negara importir terleih dahulu",
+            allowClear: true,
         });
+
+
         var $kode = $('#kodeAu');
         $kode.select2({
             placeholder: "Pilih Kode Auditee",
@@ -227,9 +257,10 @@
     <label class="col-sm-4 col-form-label">Kode  Pelabuhan Muat <span style="color: red;">*</span></label>
     <div class="col-sm-8">
         <select name="kode_pelabuhan_muat" id="kode_pelabuhan_muat" class="form-control">
-            @foreach($pel_muat as $p)
+            <!-- <option >-- pilih negara importir terlebih dahulu</option> -->
+            <!-- @foreach($pel_muat as $p)
             <option value="{{ $p->kodePelMuat }}">{{ $p->kodePelMuat.' - '.$p->namePelMuat }}</option>
-            @endforeach
+            @endforeach -->
         </select>
         <!-- <input type="text" class="form-control" name="kode_pelabuhan_muat" id="kode_pelabuhan_muat" > -->
     </div>
@@ -238,9 +269,10 @@
     <label class="col-sm-4 col-form-label">Pelabuhan Bongkar <span style="color: red;">*</span></label>
     <div class="col-sm-8">
         <select name="kode_pelabuhan_bongkar" id="kode_pelabuhan_bongkar" class="form-control">
-            @foreach($pel_bongkar as $p)
+            <!-- <option >-- pilih negara tujuan terlebih dahulu</option> -->
+            <!-- @foreach($pel_bongkar as $p)
             <option value="{{ $p->kodePelBongkar }}">{{ $p->kodePelBongkar.' - '.$p->namePelBongkar }}</option>
-            @endforeach
+            @endforeach -->
         </select>
         <!-- <input type="text" class="form-control" name="kode_pelabuhan_bongkar" id="kode_pelabuhan_bongkar" > -->
     </div>

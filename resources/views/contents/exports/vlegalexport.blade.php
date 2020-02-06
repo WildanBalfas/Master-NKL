@@ -37,10 +37,10 @@
             <td>{{ $d->tipe_data}} </td> 
             <td>{{ $d->no_hs}} </td> 
             <td>{{ $d->nama_produk}} </td> 
-            <td><span>{{$d->volume}}</span></td> 
-            <td><span>{{$d->net_weight}}</span></td>
+            <td>{{$d->volume}}</td> 
+            <td>{{$d->net_weight}}</td>
             <td>{{ $d->nou}} </td> 
-            <td><span>{{$d->value}}</span></td>
+            <td>{{$d->value}}</td>
             <td>{{ $d->scientific_name}} </td>
             <td>{{ $d->kode_harvest_country}} </td>
             <td>{{ $d->hs_printed}} </td> 

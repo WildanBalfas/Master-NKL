@@ -47,6 +47,10 @@ Route::group(['middleware'=>'auth'],function(){
     Route::resource('v-legal-header', 'LegalHeaderController');
     Route::resource('v-legal-detail', 'LegalDetailController');
     Route::get('/header/audit-data/{id}', 'LegalHeaderController@ajaxAudit')->name('header.ajax.audit');
+    //get pelabuhan muat
+    Route::get('/header/pelabuhan-muat/{id}', 'LegalHeaderController@ajaxMuat');
+    //get pelabuhan bongkar
+    Route::get('/header/pelabuhan-bongkar/{id}', 'LegalHeaderController@ajaxBongkar');
     Route::get('v-legal-detail/add/{id}', 'LegalDetailController@create')->name('v-legal-detail.buat');
     Route::get('v-legal-detail/delete/{id}', 'LegalDetailController@destroy')->name('v-legal-detail.hapus');
     Route::post('v-legal-detail/update/{id}', 'LegalHeaderController@update')->name('vlh.update');

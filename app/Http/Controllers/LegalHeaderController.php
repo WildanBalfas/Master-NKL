@@ -30,13 +30,35 @@ class LegalHeaderController extends Controller
         return view('contents.vlegal.list', compact('lh'));
     }
 
-    public function ajaxAudit($id) {
+    public function ajaxMuat($id) {
+        $kode_negara = $id;
+        $data = [];
+        $kode = DB::table('kode_pelabuhan_muat')->where('kodePelMuat', 'like', $kode_negara.'%')->get();
+        foreach ($kode as $key => $value) {
+         $data[$key]['id'] = $value->kodePelMuat;
+         $data[$key]['text'] = $value->namePelMuat;
+     }
+     return response()->json($data);
+ }
+
+ public function ajaxAudit($id) {
      $client = client::where('kodeAu', $id)->first();
      $kabupaten = DB::table('kode_kabupaten')->where('kodeKab', $client['kodeKab'])->first();
      $provinsi = DB::table('kode_provinsi')->where('kodeProvinsi', $client['kodeProv'])->first();
      $client['kabupaten_lengkap'] = $kabupaten->kodeKab.' - '.$kabupaten->nameKab;
      $client['provinsi_lengkap'] = $provinsi->kodeProvinsi.' - '.$provinsi->nameProvinsi;
      return response()->json($client);
+ }
+
+ public function ajaxBongkar($id) {
+     $kode_negara = $id;
+     $data = [];
+     $kode = DB::table('kode_pelabuhan_bongkar')->where('kodePelBongkar', 'like', $kode_negara.'%')->get();
+     foreach ($kode as $key => $value) {
+         $data[$key]['id'] = $value->kodePelBongkar;
+         $data[$key]['text'] = $value->namePelBongkar;
+     }
+     return response()->json($data);
  }
 
     /**
