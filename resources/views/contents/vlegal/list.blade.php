@@ -24,13 +24,15 @@
     </thead>
     <tbody>
         @foreach ($lh as $index => $a)
-        @if(Auth::user()->role == 'admin' && $a->status == 'TERKIRIM')
+        @if(Auth::user()->role == 'admin' && $a->status != 'DRAFT')
         <tr>
             <td>{{ ++$index }}</td>
             <td>{{ $a->nama_importir }}</td>
             <td>{{ $a->nama_eksportir }}</td>
             <td>Nomor : {{ $a->no_vlegal }}<br>Tanggal : {{ \Carbon\Carbon::parse($a->tgl_invoice)->format('Y-m-d') }}</td>
-            <td>{{ $a->status }}</td>
+            <td>@if($a->status == 'DIBATALKAN')<a style="color: red" href="{{ asset($a->surat_pembatalan) }}" target="_blank">{{ $a->status }}</a>
+                @elseif($a->status != 'DIBATALKAN'){{ $a->status }}@endif
+            </td>
             <td>@if(!empty($a->lampiran))<a href="{{ asset($a->lampiran) }}" target="_blank">Lihat</a>@endif</td>
             <td>
                 <a href="{{ route('v-legal-header.edit', $a->id) }}"><i class="fas fa-edit"></i></a>
@@ -170,8 +172,8 @@
                                         @if($a->status == 'DRAFT')
                                         <button type="submit" id="kirim-submit{{$a->id}}" class="btn btn-success" data-target="#viewModal" disabled="true">Kirim</button>
                                         @endif
-                                        @if($a->status == 'TERKIRIM')
-                                        <button type="button" class="btn btn-success modal-batal" data-id="{{$a->id}}" data-dismiss="modal">Batal</button>
+                                        @if($a->status == 'TERKIRIM' || $a->status == 'DALAM PROSES')
+                                        <button type="button" class="btn btn-danger modal-batal" data-id="{{$a->id}}" data-dismiss="modal">Batalkan</button>
                                         @endif
                                     </div>
                                 </div>
@@ -187,7 +189,7 @@
                 <td>{{ ++$index }}</td>
                 <td>{{ $a->nama_importir }}</td>
                 <td>{{ $a->nama_eksportir }}</td>
-                <td>Nomor : {{ $a->npwp }}<br>Tanggal : {{ \Carbon\Carbon::parse($a->tgl_invoice)->format('Y-m-d') }}</td>
+                <td>Nomor : {{ $a->no_vlegal }}<br>Tanggal : {{ \Carbon\Carbon::parse($a->tgl_invoice)->format('d-m-Y') }}</td>
                 <td>{{ $a->status }}</td>
                 <td>@if(!empty($a->lampiran))<a href="{{ asset($a->lampiran) }}" target="_blank">Lihat</a>@endif</td>
                 <td>
@@ -333,9 +335,8 @@
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                                         @if($a->status == 'DRAFT')
                                         <button type="submit" class="btn btn-success" data-target="#viewModal">SEND</button>
-                                        @endif
-                                        @if($a->status == 'TERKIRIM')
-                                        <button type="button" data-id="{{$a->id}}" class="btn btn-success modal-batal" data-dismiss="modal">Batal</button>
+                                        @elseif($a->status == 'TERKIRIM' || $a->status == 'DALAM PROSES')
+                                        <button type="button" class="btn btn-danger modal-batal" data-id="{{$a->id}}" data-dismiss="modal">Batalkan</button>
                                         @endif
                                     </div>
                                 </div>
@@ -368,14 +369,14 @@
                     <label class="col-sm-4 col-form-label">File Pembatalan <span style="color: red;">*</span></label>
                     <div class="col-sm-8">
                         <input type="file" class="form-control" name="surat_pembatalan" id="surat_pembatalan" required>
-                        <p style="font-style: italic; font-size: 12px;">Jika lebih dari satu dibuat archive dalam bentuk .zip</p>
+                        <p style="font-style: italic; font-size: 12px;">Upload surat pembatalan yang resmi</p>
                     </div>
                 </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary submit-batal" >Send</button>
+            <button type="button" class="btn btn-success submit-batal" >Send</button>
           </div>
         </div>
 

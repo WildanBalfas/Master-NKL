@@ -1,0 +1,17 @@
+#{!securityContext.userInRole['VICE_PRESIDENT_IFM,VICE_PRESIDENT_LUBS,MANAGER_KEY_ACCOUNT_IFM,MANAGER_KEY_ACCOUNT_LUBS,MANAGER_SALES_INDUSTRI_IFM,MANAGER_SALES_INDUSTRI_LUBS,SALES_EXECUTIVE_INDUSTRY_IFM,SALES_EXECUTIVE_INDUSTRY_LUBS']}
+
+VICE_PRESIDENT_IFM,VICE_PRESIDENT_LUBS,MANAGER_KEY_ACCOUNT_IFM,MANAGER_KEY_ACCOUNT_LUBS,MANAGER_SALES_INDUSTRI_IFM,MANAGER_SALES_INDUSTRI_LUBS,SALES_EXECUTIVE_INDUSTRY_IFM,SALES_EXECUTIVE_INDUSTRY_LUBS
+
+
+before:
+#{Offerings.isFeatureEnabledForImplementation.ORA_MIDSIZE_SALES or Offerings.isFeatureEnabledForImplementation.ZBS_SALES or Offerings.isFeatureEnabledForImplementation.ORA_SVC}
+
+schedule process:
+#{(Profile.values.ESS_ALLOW_CLASSIC_INTERFACE eq 'Y' or Profile.values.ESS_ALLOW_CLASSIC_INTERFACE eq null)}
+
+#{(Profile.values.ESS_ALLOW_CLASSIC_INTERFACE ne 'Y' and Profile.values.ESS_ALLOW_CLASSIC_INTERFACE ne null)}
+
+Recommendations:
+#{Offerings.isFeatureEnabledForImplementation.ORA_MIDSIZE_SALES or Offerings.isFeatureEnabledForImplementation.ZBS_SALES}
+
+#{Offerings.isFeatureEnabledForImplementation.ORA_MIDSIZE_SALES or Offerings.isFeatureEnabledForImplementation.ZBS_SALES}
