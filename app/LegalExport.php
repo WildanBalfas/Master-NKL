@@ -25,7 +25,9 @@ class LegalExport implements FromView, ShouldAutoSize, WithColumnFormatting
     {
         return [
             'B' => NumberFormat::FORMAT_NUMBER,
-            'D' => '@'
+            'D' => '@',
+            'E' => '@',
+            'G' => '@',
         ];
     }
 
