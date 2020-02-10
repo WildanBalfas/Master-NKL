@@ -18,13 +18,29 @@
 
         $('#kode_negara_importir').change(function() {
             var negara = $(this).val();
+            var $muat = $('#kode_pelabuhan_muat');
+            var option = $muat.data('select2').options.options;
+            $muat.html('');
+            var items = [];
             $.ajax({
                 type: "GET",
                 url: '{{ url("/header/pelabuhan-muat") }}/'+negara,
                 success: function(data){
-                    $('#kode_pelabuhan_muat').select2({
-                        data: data,
-                    });        
+                    // $('#kode_pelabuhan_muat').select2({
+                    //     data: data,
+                    // });        
+                    for (var i = 0; i < data.length; i++) {
+                        // logik to create new items
+                         items.push({
+                                "id": data[i].id,
+                                "text": data[i].text
+                            });
+
+                        $muat.append("<option value=\"" + data[i].id + "\">" + data[i].text+ "</option>");
+                    }
+                    // add new items
+                    option.data = items;
+                    $muat.select2(options);
                 }
             });
             
@@ -32,15 +48,29 @@
 
         $('#kode_negara_tujuan').change(function() {
             var negara = $(this).val();
+            var $bongkar = $('#kode_pelabuhan_bongkar');
+            var option = $bongkar.data('select2').options.options;
+            $bongkar.html('');
+            var items = [];
             $.ajax({
                 type: "GET",
                 url: '{{ url("/header/pelabuhan-bongkar") }}/'+negara,
                 success: function(data){
-                    $('#kode_pelabuhan_bongkar').select2({
-                        data: data,
-                    });        
+                    for (var i = 0; i < data.length; i++) {
+                        // logik to create new items
+                         items.push({
+                                "id": data[i].id,
+                                "text": data[i].text
+                            });
+
+                        $bongkar.append("<option value=\"" + data[i].id + "\">" + data[i].text+ "</option>");
+                    }
+                    // add new items
+                    option.data = items;
+                    $bongkar.select2(options);
                 }
             });
+
         });
 
         $('#kode_pelabuhan_bongkar').select2({
