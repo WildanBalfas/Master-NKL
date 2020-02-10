@@ -36,7 +36,7 @@ class LegalHeaderController extends Controller
         $kode = DB::table('kode_pelabuhan_muat')->where('kodePelMuat', 'like', $kode_negara.'%')->get();
         foreach ($kode as $key => $value) {
          $data[$key]['id'] = $value->kodePelMuat;
-         $data[$key]['text'] = $value->namePelMuat;
+         $data[$key]['text'] = $value->kodePelMuat.' - '.$value->namePelMuat;
      }
      return response()->json($data);
  }
@@ -56,7 +56,7 @@ class LegalHeaderController extends Controller
      $kode = DB::table('kode_pelabuhan_bongkar')->where('kodePelBongkar', 'like', $kode_negara.'%')->get();
      foreach ($kode as $key => $value) {
          $data[$key]['id'] = $value->kodePelBongkar;
-         $data[$key]['text'] = $value->namePelBongkar;
+         $data[$key]['text'] = $value->kodePelBongkar.' - '.$value->namePelBongkar;
      }
      return response()->json($data);
  }
