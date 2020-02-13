@@ -43,6 +43,9 @@ Route::group(['middleware'=>'auth'],function(){
     Route::put('/{id}/update-audit', 'auditController@updateAudit')->name('audit.update');
     Route::get('/{id}/delete-audit', 'auditController@deleteAudit')->name('audit.delete');
     Route::get('/audit-data/{id}', 'auditController@ajaxAudit')->name('audit.ajax');
+    
+    //CRUD Pelabuhan Muat
+    Route::resource('pelabuhan_muat', 'PelMuatController');
 
     Route::resource('v-legal-header', 'LegalHeaderController');
     Route::resource('v-legal-detail', 'LegalDetailController');
